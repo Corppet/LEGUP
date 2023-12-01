@@ -1,11 +1,8 @@
 package edu.rpi.legup.ui.lookandfeel.components;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTree;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 

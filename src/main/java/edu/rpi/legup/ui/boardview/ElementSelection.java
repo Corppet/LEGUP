@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ElementSelection {
-    private ArrayList<ElementView> selection;
+    private final ArrayList<ElementView> selection;
     private ElementView hover;
     private Point mousePoint;
 
@@ -26,8 +26,7 @@ public class ElementSelection {
         if (selection.contains(elementView)) {
             selection.remove(elementView);
             elementView.setSelected(false);
-        }
-        else {
+        } else {
             selection.add(elementView);
             elementView.setSelected(true);
         }

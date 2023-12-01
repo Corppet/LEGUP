@@ -9,15 +9,14 @@ import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.ui.ScrollView;
 import edu.rpi.legup.utility.DisjointSets;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.*;
 import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.*;
 
 import static edu.rpi.legup.model.tree.TreeElementType.NODE;
 import static edu.rpi.legup.model.tree.TreeElementType.TRANSITION;
@@ -39,12 +38,12 @@ public class TreeView extends ScrollView implements ITreeListener {
 
     private TreeNodeView nodeHover;
 
-    private ArrayList<Rectangle> currentStateBoxes;
-    private Rectangle bounds = new Rectangle(0, 0, 0, 0);
+    private final ArrayList<Rectangle> currentStateBoxes;
+    private final Rectangle bounds = new Rectangle(0, 0, 0, 0);
 
     private Tree tree;
     private TreeNodeView rootNodeView;
-    private Map<TreeElement, TreeElementView> viewMap;
+    private final Map<TreeElement, TreeElementView> viewMap;
     private Dimension dimension;
 
     private TreeViewSelection selection;
@@ -103,15 +102,13 @@ public class TreeView extends ScrollView implements ITreeListener {
     private TreeElementView getTreeElementView(Point point, TreeElementView elementView) {
         if (elementView == null) {
             return null;
-        }
-        else {
+        } else {
             if (elementView.contains(point) && elementView.isVisible()) {
                 if (elementView.getType() == NODE && ((TreeNodeView) elementView).isContradictoryState()) {
                     return null;
                 }
                 return elementView;
-            }
-            else {
+            } else {
                 if (elementView.getType() == NODE) {
                     TreeNodeView nodeView = (TreeNodeView) elementView;
                     for (TreeTransitionView transitionView : nodeView.getChildrenViews()) {
@@ -120,8 +117,7 @@ public class TreeView extends ScrollView implements ITreeListener {
                             return view;
                         }
                     }
-                }
-                else {
+                } else {
                     TreeTransitionView transitionView = (TreeTransitionView) elementView;
                     return getTreeElementView(point, transitionView.getChildView());
                 }
@@ -250,8 +246,7 @@ public class TreeView extends ScrollView implements ITreeListener {
         if (view.getType() == NODE) {
             TreeNodeView nodeView = (TreeNodeView) view;
             nodeView.getParentView().setChildView(null);
-        }
-        else {
+        } else {
             TreeTransitionView transitionView = (TreeTransitionView) view;
             transitionView.getParentViews().forEach((TreeNodeView n) -> n.removeChildrenView(transitionView));
         }
@@ -291,8 +286,7 @@ public class TreeView extends ScrollView implements ITreeListener {
     public void onTreeElementAdded(TreeElement treeElement) {
         if (treeElement.getType() == NODE) {
             addTreeNode((TreeNode) treeElement);
-        }
-        else {
+        } else {
             addTreeTransition((TreeTransition) treeElement);
         }
         repaint();
@@ -311,8 +305,7 @@ public class TreeView extends ScrollView implements ITreeListener {
 
             nodeView.getParentView().setChildView(null);
             removeTreeNode(node);
-        }
-        else {
+        } else {
             TreeTransition trans = (TreeTransition) element;
             TreeTransitionView transView = (TreeTransitionView) viewMap.get(trans);
 
@@ -403,8 +396,7 @@ public class TreeView extends ScrollView implements ITreeListener {
     public void drawTree(Graphics2D graphics2D) {
         if (tree == null) {
             LOGGER.error("Unable to draw tree.");
-        }
-        else {
+        } else {
             if (rootNodeView == null) {
                 rootNodeView = new TreeNodeView(tree.getRootNode());
 
@@ -493,8 +485,7 @@ public class TreeView extends ScrollView implements ITreeListener {
                     if (childNodeView != null) {
                         calculateViewLocations(childNodeView, depth + 1);
                     }
-                }
-                else {
+                } else {
                     if (parentsViews.size() > 1 && parentsViews.get(parentsViews.size() - 1) == nodeView) {
                         int yAvg = 0;
                         for (int i = 0; i < parentsViews.size(); i++) {
@@ -558,19 +549,16 @@ public class TreeView extends ScrollView implements ITreeListener {
             TreeNode node = nodeView.getTreeElement();
             if (nodeView.getChildrenViews().size() == 0) {
                 nodeView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-            }
-            else {
+            } else {
                 if (nodeView.getChildrenViews().size() == 1) {
                     TreeTransitionView childView = nodeView.getChildrenViews().get(0);
                     calcSpan(childView);
                     if (childView.getParentViews().size() > 1) {
                         nodeView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-                    }
-                    else {
+                    } else {
                         nodeView.setSpan(childView.getSpan());
                     }
-                }
-                else {
+                } else {
                     DisjointSets<TreeTransition> branches = node.findMergingBranches();
                     List<TreeTransition> children = node.getChildren();
 
@@ -598,8 +586,7 @@ public class TreeView extends ScrollView implements ITreeListener {
                             }
                             calcSpan(mergePointView);
                             span += Math.max(mergePointView.getSpan(), subSpan);
-                        }
-                        else {
+                        } else {
                             TreeTransition trans = mergeSet.iterator().next();
                             TreeTransitionView transView = (TreeTransitionView) viewMap.get(trans);
                             calcSpan(transView);
@@ -609,14 +596,12 @@ public class TreeView extends ScrollView implements ITreeListener {
                     nodeView.setSpan(span);
                 }
             }
-        }
-        else {
+        } else {
             TreeTransitionView transView = (TreeTransitionView) view;
             TreeNodeView nodeView = transView.getChildView();
             if (nodeView == null) {
                 transView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-            }
-            else {
+            } else {
                 calcSpan(nodeView);
                 transView.setSpan(nodeView.getSpan());
             }
@@ -641,24 +626,20 @@ public class TreeView extends ScrollView implements ITreeListener {
             TreeNode node = nodeView.getTreeElement();
             if (nodeView.getChildrenViews().size() == 0) {
                 nodeView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-            }
-            else {
+            } else {
                 if (nodeView.getChildrenViews().size() == 1) {
                     TreeTransitionView childView = nodeView.getChildrenViews().get(0);
                     if (childView == stop) {
                         nodeView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-                    }
-                    else {
+                    } else {
                         subCalcSpan(childView, stop);
                         if (childView.getParentViews().size() > 1) {
                             nodeView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-                        }
-                        else {
+                        } else {
                             nodeView.setSpan(childView.getSpan());
                         }
                     }
-                }
-                else {
+                } else {
                     DisjointSets<TreeTransition> branches = node.findMergingBranches();
                     List<TreeTransition> children = node.getChildren();
 
@@ -681,8 +662,7 @@ public class TreeView extends ScrollView implements ITreeListener {
                             }
                             subCalcSpan(mergePointView, stop);
                             span += Math.max(mergePointView.getSpan(), subSpan);
-                        }
-                        else {
+                        } else {
                             TreeTransition trans = mergeSet.iterator().next();
                             TreeTransitionView transView = (TreeTransitionView) viewMap.get(trans);
                             subCalcSpan(transView, stop);
@@ -693,14 +673,12 @@ public class TreeView extends ScrollView implements ITreeListener {
                     nodeView.setSpan(span);
                 }
             }
-        }
-        else {
+        } else {
             TreeTransitionView transView = (TreeTransitionView) view;
             TreeNodeView nodeView = transView.getChildView();
             if (nodeView == null || nodeView == stop) {
                 transView.setSpan(DIAMETER + NODE_GAP_HEIGHT);
-            }
-            else {
+            } else {
                 calcSpan(nodeView);
                 transView.setSpan(nodeView.getSpan());
             }

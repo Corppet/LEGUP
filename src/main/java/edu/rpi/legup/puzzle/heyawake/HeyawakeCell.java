@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class HeyawakeCell extends GridCell<Integer> {
 
-    private int regionIndex;
+    private final int regionIndex;
 
     public HeyawakeCell(int valueInt, Point location, int regionIndex) {
         super(valueInt, location);

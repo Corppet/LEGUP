@@ -3,14 +3,8 @@ package edu.rpi.legup.puzzle.skyscrapers.rules;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.rules.ContradictionRule;
-import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersBoard;
-import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersCell;
-import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class UnresolvedCellContradictionRule extends ContradictionRule {
 

@@ -59,8 +59,7 @@ public class HeyawakeImporter extends PuzzleImporter {
             if (!boardElement.getAttribute("size").isEmpty()) {
                 int size = Integer.valueOf(boardElement.getAttribute("size"));
                 heyawakeBoard = new HeyawakeBoard(size);
-            }
-            else {
+            } else {
                 if (!boardElement.getAttribute("width").isEmpty() && !boardElement.getAttribute("height").isEmpty()) {
                     int width = Integer.valueOf(boardElement.getAttribute("width"));
                     int height = Integer.valueOf(boardElement.getAttribute("height"));
@@ -96,8 +95,7 @@ public class HeyawakeImporter extends PuzzleImporter {
                 }
             }
             puzzle.setCurrentBoard(heyawakeBoard);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new InvalidFileFormatException("Heyawake Importer: unknown value where integer expected");
         }
     }

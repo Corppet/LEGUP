@@ -8,13 +8,14 @@ import edu.rpi.legup.puzzle.treetent.TreeTentCell;
 import edu.rpi.legup.puzzle.treetent.TreeTentLine;
 import edu.rpi.legup.puzzle.treetent.TreeTentType;
 
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
 public class NoTreeForTentContradictionRule extends ContradictionRule {
 
     public NoTreeForTentContradictionRule() {
-        super("TREE-CONT-0002", "No Tree For Tent",
+        super("TREE-CONT-0002",
+                "No Tree For Tent",
                 "Each tent must link to a tree.",
                 "edu/rpi/legup/images/treetent/contra_NoTreeForTent.png");
     }
@@ -51,8 +52,7 @@ public class NoTreeForTentContradictionRule extends ContradictionRule {
         int adjTree = adjTrees.size();
         if (adjTree == 0) {
             return null;
-        }
-        else {
+        } else {
             return super.getNoContradictionMessage();
         }
     }

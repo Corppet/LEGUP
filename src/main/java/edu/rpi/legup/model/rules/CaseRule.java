@@ -6,10 +6,7 @@ import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static edu.rpi.legup.model.rules.RuleType.CASE;
 
@@ -69,8 +66,7 @@ public abstract class CaseRule extends Rule {
         for (TreeTransition childTrans : parentNodes.get(0).getChildren()) {
             if (childTrans.getRule() == null || !childTrans.getRule().getClass().equals(this.getClass())) {
                 return "All children nodes must be justified with the same case rule.";
-            }
-            else {
+            } else {
                 if (childTrans.getBoard().getModifiedData().isEmpty()) {
                     return "You must modify the board in each case node";
                 }

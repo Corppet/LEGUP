@@ -3,12 +3,10 @@ package edu.rpi.legup.ui.lookandfeel.components;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialImages;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 

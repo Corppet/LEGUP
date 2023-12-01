@@ -7,22 +7,27 @@ import edu.rpi.legup.model.gameboard.CaseBoard;
 import edu.rpi.legup.model.rules.CaseRule;
 import edu.rpi.legup.model.tree.*;
 import edu.rpi.legup.ui.boardview.ElementView;
-import edu.rpi.legup.ui.proofeditorui.treeview.*;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeNodeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
 import java.awt.event.MouseEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static edu.rpi.legup.app.GameBoardFacade.getInstance;
 
 public class AutoCaseRuleCommand extends PuzzleCommand {
 
-    private ElementView elementView;
-    private TreeViewSelection selection;
-    private CaseRule caseRule;
-    private CaseBoard caseBoard;
-    private MouseEvent mouseEvent;
+    private final ElementView elementView;
+    private final TreeViewSelection selection;
+    private final CaseRule caseRule;
+    private final CaseBoard caseBoard;
+    private final MouseEvent mouseEvent;
 
-    private List<TreeTransition> caseTrans;
+    private final List<TreeTransition> caseTrans;
 
     private static final int MAX_CASES = 10;
 
@@ -31,9 +36,9 @@ public class AutoCaseRuleCommand extends PuzzleCommand {
      *
      * @param elementView currently selected puzzle puzzleElement view that is being edited
      * @param selection   currently selected tree puzzleElement views that is being edited
-     * @param caseRule currently selected caseRule puzzleElement view that is being edited
-     * @param caseBoard currently selected caseBoard puzzleElement view that is being edited
-     * @param mouseEvent currently selected mouseEvent puzzleElement view that is being edited
+     * @param caseRule    currently selected caseRule puzzleElement view that is being edited
+     * @param caseBoard   currently selected caseBoard puzzleElement view that is being edited
+     * @param mouseEvent  currently selected mouseEvent puzzleElement view that is being edited
      */
     public AutoCaseRuleCommand(ElementView elementView, TreeViewSelection selection, CaseRule caseRule, CaseBoard caseBoard, MouseEvent mouseEvent) {
         this.elementView = elementView;
@@ -69,8 +74,7 @@ public class AutoCaseRuleCommand extends PuzzleCommand {
                 puzzle.notifyTreeListeners(listener -> listener.onTreeElementAdded(transition));
                 newSelection.addToSelection(treeView.getElementView(childNode));
             }
-        }
-        else {
+        } else {
             for (final TreeTransition transition : caseTrans) {
                 tree.addTreeElement(node, transition);
                 TreeNode childNode = transition.getChildNode();

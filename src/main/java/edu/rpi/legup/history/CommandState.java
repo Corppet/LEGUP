@@ -3,7 +3,7 @@ package edu.rpi.legup.history;
 public enum CommandState {
     CREATED("Created"), EXECUTED("Executed"), UNDOED("Undoed"), REDOED("Redoed");
 
-    private String value;
+    private final String value;
 
     CommandState(String value) {
         this.value = value;

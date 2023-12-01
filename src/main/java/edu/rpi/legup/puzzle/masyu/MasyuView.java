@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MasyuView extends GridBoardView {
-    private List<MasyuLineView> lineViews;
+    private final List<MasyuLineView> lineViews;
 
     public MasyuView(MasyuBoard board) {
         super(new BoardController(), new MasyuController(), board.getDimension());

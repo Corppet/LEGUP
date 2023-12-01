@@ -1,10 +1,10 @@
 package edu.rpi.legup.app;
 
 import edu.rpi.legup.history.ICommand;
-import edu.rpi.legup.history.ValidateDirectRuleCommand;
 import edu.rpi.legup.history.ValidateContradictionRuleCommand;
-import edu.rpi.legup.model.rules.DirectRule;
+import edu.rpi.legup.history.ValidateDirectRuleCommand;
 import edu.rpi.legup.model.rules.ContradictionRule;
+import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.rules.Rule;
 import edu.rpi.legup.model.rules.RuleType;
 import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
@@ -20,7 +20,7 @@ import static edu.rpi.legup.app.GameBoardFacade.getInstance;
 
 public class PuzzleKeyAccelerator implements KeyListener {
 
-    private Map<KeyStroke, Rule> keyStrokeMap;
+    private final Map<KeyStroke, Rule> keyStrokeMap;
 
     public PuzzleKeyAccelerator() {
         this.keyStrokeMap = new HashMap<>();
@@ -68,8 +68,7 @@ public class PuzzleKeyAccelerator implements KeyListener {
             if (rule.getRuleType() == RuleType.CASE) {
                 // TODO: review this line of code and figure out what it's supposed to do (remove if necessary)
 //                handleCaseRule((CaseRule)rule);
-            }
-            else {
+            } else {
                 if (rule.getRuleType() == RuleType.CONTRADICTION) {
                     TreeViewSelection selection = treeView.getSelection();
 
@@ -77,20 +76,17 @@ public class PuzzleKeyAccelerator implements KeyListener {
                     if (validate.canExecute()) {
                         getInstance().getHistory().pushChange(validate);
                         validate.execute();
-                    }
-                    else {
+                    } else {
                         update = validate.getError();
                     }
-                }
-                else {
+                } else {
                     TreeViewSelection selection = treeView.getSelection();
 
                     ICommand validate = new ValidateDirectRuleCommand(selection, (DirectRule) rule);
                     if (validate.canExecute()) {
                         getInstance().getHistory().pushChange(validate);
                         validate.execute();
-                    }
-                    else {
+                    } else {
                         update = validate.getError();
                     }
                 }

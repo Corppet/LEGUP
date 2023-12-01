@@ -2,7 +2,6 @@ package edu.rpi.legup.puzzle.shorttruthtable;
 
 import edu.rpi.legup.model.PuzzleExporter;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-import edu.rpi.legup.puzzle.nurikabe.NurikabeBoard;
 import org.w3c.dom.Document;
 
 public class ShortTruthTableExporter extends PuzzleExporter {
@@ -16,8 +15,7 @@ public class ShortTruthTableExporter extends PuzzleExporter {
         ShortTruthTableBoard board;
         if (puzzle.getTree() != null) {
             board = (ShortTruthTableBoard) puzzle.getTree().getRootNode().getBoard();
-        }
-        else {
+        } else {
             board = (ShortTruthTableBoard) puzzle.getBoardView().getBoard();
         }
 

@@ -16,9 +16,9 @@ public abstract class ElementView implements Shape {
     protected Dimension size;
     protected PuzzleElement puzzleElement;
     private Color hoverColor;
-    private Color modifiedColor;
-    private Color caseColor;
-    private Color invalidColor;
+    private final Color modifiedColor;
+    private final Color caseColor;
+    private final Color invalidColor;
     private boolean showCasePicker;
     private boolean isCaseRulePickable;
     private boolean isHover;

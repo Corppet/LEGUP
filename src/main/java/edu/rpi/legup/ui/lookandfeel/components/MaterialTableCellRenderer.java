@@ -1,11 +1,8 @@
 package edu.rpi.legup.ui.lookandfeel.components;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 

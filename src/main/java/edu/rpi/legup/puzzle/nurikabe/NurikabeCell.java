@@ -1,7 +1,7 @@
 package edu.rpi.legup.puzzle.nurikabe;
 
-import edu.rpi.legup.model.gameboard.GridCell;
 import edu.rpi.legup.model.elements.Element;
+import edu.rpi.legup.model.gameboard.GridCell;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -46,7 +46,7 @@ public class NurikabeCell extends GridCell<Integer> {
      */
     @Override
     public void setType(Element e, MouseEvent m) {
-        switch (e.getElementID()){
+        switch (e.getElementID()) {
             case "NURI-PLAC-0001":
                 this.data = -1;
                 break;
@@ -54,20 +54,18 @@ public class NurikabeCell extends GridCell<Integer> {
                 this.data = 0;
                 break;
             case "NURI-UNPL-0001":
-                switch (m.getButton()){
+                switch (m.getButton()) {
                     case MouseEvent.BUTTON1:
                         if (this.data <= 0 || this.data > 8) {
                             this.data = 1;
-                        }
-                        else {
+                        } else {
                             this.data = this.data + 1;
                         }
                         break;
                     case MouseEvent.BUTTON3:
                         if (this.data > 1) {
                             this.data = this.data - 1;
-                        }
-                        else {
+                        } else {
                             this.data = 9;
                         }
                         break;

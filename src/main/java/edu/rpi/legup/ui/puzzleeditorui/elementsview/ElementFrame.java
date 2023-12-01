@@ -14,12 +14,12 @@ public class ElementFrame extends JPanel {
     private static final String htmlHead = "<html>";
     private static final String htmlTail = "</html>";
 
-    private PlaceableElementPanel placeableElementPanel;
-    private NonPlaceableElementPanel nonPlaceableElementPanel;
-    private JTabbedPane tabbedPane;
-    private ButtonGroup buttonGroup;
+    private final PlaceableElementPanel placeableElementPanel;
+    private final NonPlaceableElementPanel nonPlaceableElementPanel;
+    private final JTabbedPane tabbedPane;
+    private final ButtonGroup buttonGroup;
 
-    private EditorElementController controller;
+    private final EditorElementController controller;
 
     public ElementFrame(EditorElementController controller) {
         this.controller = controller;

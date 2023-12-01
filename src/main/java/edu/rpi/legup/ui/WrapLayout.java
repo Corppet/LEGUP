@@ -1,7 +1,6 @@
 package edu.rpi.legup.ui;
 
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.awt.*;
 
 /**

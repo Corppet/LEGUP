@@ -1,10 +1,10 @@
 package edu.rpi.legup.controller;
 
-import edu.rpi.legup.puzzle.treetent.TreeTentBoard;
-import edu.rpi.legup.ui.ScrollView;
 import edu.rpi.legup.app.GameBoardFacade;
 import edu.rpi.legup.app.LegupPreferences;
 import edu.rpi.legup.history.AutoCaseRuleCommand;
+import edu.rpi.legup.history.EditDataCommand;
+import edu.rpi.legup.history.ICommand;
 import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.elements.Element;
 import edu.rpi.legup.model.gameboard.Board;
@@ -14,19 +14,18 @@ import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.tree.TreeElement;
 import edu.rpi.legup.model.tree.TreeElementType;
 import edu.rpi.legup.model.tree.TreeTransition;
+import edu.rpi.legup.puzzle.treetent.TreeTentBoard;
 import edu.rpi.legup.ui.DynamicView;
 import edu.rpi.legup.ui.boardview.BoardView;
 import edu.rpi.legup.ui.boardview.ElementSelection;
 import edu.rpi.legup.ui.boardview.ElementView;
 import edu.rpi.legup.ui.boardview.SelectionItemView;
 import edu.rpi.legup.ui.proofeditorui.treeview.*;
-import edu.rpi.legup.history.ICommand;
-import edu.rpi.legup.history.EditDataCommand;
 
 import java.awt.*;
 import java.awt.event.*;
 
-import static edu.rpi.legup.app.GameBoardFacade.*;
+import static edu.rpi.legup.app.GameBoardFacade.getInstance;
 
 public class ElementController implements MouseListener, MouseMotionListener, ActionListener, KeyListener {
     protected BoardView boardView;
@@ -107,14 +106,12 @@ public class ElementController implements MouseListener, MouseMotionListener, Ac
                     if (treePanel != null) {
                         treePanel.updateError("");
                     }
-                }
-                else {
+                } else {
                     if (treePanel != null) {
                         treePanel.updateError(autoCaseRuleCommand.getError());
                     }
                 }
-            }
-            else {
+            } else {
                 if (selection != null) {
                     ICommand edit = new EditDataCommand(elementView, selection, e);
                     if (edit.canExecute()) {
@@ -123,8 +120,7 @@ public class ElementController implements MouseListener, MouseMotionListener, Ac
                         if (treePanel != null) {
                             treePanel.updateError("");
                         }
-                    }
-                    else {
+                    } else {
                         if (treePanel != null) {
                             treePanel.updateError(edit.getError());
                         }
@@ -183,8 +179,7 @@ public class ElementController implements MouseListener, MouseMotionListener, Ac
                 }
                 if (error != null) {
                     dynamicView.updateError(error);
-                }
-                else {
+                } else {
                     dynamicView.resetStatus();
                 }
             }
@@ -258,8 +253,7 @@ public class ElementController implements MouseListener, MouseMotionListener, Ac
                 }
                 if (error != null) {
                     dynamicView.updateError(error);
-                }
-                else {
+                } else {
                     dynamicView.resetStatus();
                 }
             }
@@ -297,12 +291,7 @@ public class ElementController implements MouseListener, MouseMotionListener, Ac
 
         puzzleElement.setData(value);
 
-        if (puzzleElement.equalsData(prevBord.getPuzzleElement(puzzleElement))) {
-            puzzleElement.setModified(false);
-        }
-        else {
-            puzzleElement.setModified(true);
-        }
+        puzzleElement.setModified(!puzzleElement.equalsData(prevBord.getPuzzleElement(puzzleElement)));
 
         transitionView.getTreeElement().propagateChange(puzzleElement);
 

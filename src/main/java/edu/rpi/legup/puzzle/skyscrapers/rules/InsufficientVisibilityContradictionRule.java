@@ -9,9 +9,7 @@ import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
 
 import java.awt.*;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class InsufficientVisibilityContradictionRule extends ContradictionRule {
 

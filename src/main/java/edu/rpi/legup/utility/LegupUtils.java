@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -22,7 +23,7 @@ public class LegupUtils {
      * @param packageName The base package
      * @return The classes
      * @throws ClassNotFoundException if class is not in package
-     * @throws IOException if file is not found
+     * @throws IOException            if file is not found
      */
     public static Class[] getClasses(String packageName)
             throws ClassNotFoundException, IOException {
@@ -31,7 +32,7 @@ public class LegupUtils {
         String path = packageName.replace('.', '/');
 
         URL url = LegupUtils.class.getProtectionDomain().getCodeSource().getLocation();
-        String jarPath = URLDecoder.decode(url.getFile(), "UTF-8");
+        String jarPath = URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8);
         if (jarPath.contains(".jar")) {
             List<Class> css = findClassesZip(jarPath, path);
             return css.toArray(new Class[css.size()]);
@@ -69,8 +70,7 @@ public class LegupUtils {
             if (file.isDirectory()) {
                 assert !file.getName().contains(".");
                 classes.addAll(findClasses(file, packageName + "." + file.getName()));
-            }
-            else {
+            } else {
                 if (file.getName().endsWith(".class")) {
                     classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
                 }

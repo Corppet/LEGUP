@@ -2,13 +2,12 @@ package edu.rpi.legup.puzzle.shorttruthtable.rules.basic;
 
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
+import edu.rpi.legup.model.rules.ContradictionRule;
 import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
-
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableBoard;
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCell;
-import edu.rpi.legup.model.rules.ContradictionRule;
 
 public abstract class DirectRule_Generic extends DirectRule {
 
@@ -45,7 +44,7 @@ public abstract class DirectRule_Generic extends DirectRule {
 
         ShortTruthTableCell checkCell =
                 this.ELIMINATION_RULE
-                        ? (ShortTruthTableCell) modifiedBoard.getCell(parentCell.getX(), parentCell.getY())
+                        ? modifiedBoard.getCell(parentCell.getX(), parentCell.getY())
                         : (ShortTruthTableCell) modifiedBoard.getPuzzleElement(element);
 
         checkCell.setType(finalCell.getType().getNegation());

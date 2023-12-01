@@ -1,17 +1,9 @@
 package edu.rpi.legup.ui.lookandfeel.materialdesign;
 
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
@@ -31,15 +23,15 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 
     private static final Map<Integer, Map<Position, BufferedImage>> CACHE
             = new HashMap<Integer, Map<Position, BufferedImage>>();
-    private Color lineColor;
-    private int lineWidth;
-    private int shadowSize;
-    private float shadowOpacity;
-    private int cornerSize;
-    private boolean showTopShadow;
-    private boolean showLeftShadow;
-    private boolean showBottomShadow;
-    private boolean showRightShadow;
+    private final Color lineColor;
+    private final int lineWidth;
+    private final int shadowSize;
+    private final float shadowOpacity;
+    private final int cornerSize;
+    private final boolean showTopShadow;
+    private final boolean showLeftShadow;
+    private final boolean showBottomShadow;
+    private final boolean showRightShadow;
 
     public DropShadowBorder() {
         this(UIManager.getColor("Control"), 1, 5);
@@ -98,12 +90,10 @@ public class DropShadowBorder extends AbstractBorder implements Border {
             topLeftShadowPoint = new Point();
             if (showLeftShadow && !showTopShadow) {
                 topLeftShadowPoint.setLocation(x, y + shadowSize);
-            }
-            else {
+            } else {
                 if (showLeftShadow && showTopShadow) {
                     topLeftShadowPoint.setLocation(x, y);
-                }
-                else {
+                } else {
                     if (!showLeftShadow && showTopShadow) {
                         topLeftShadowPoint.setLocation(x + shadowSize, y);
                     }
@@ -116,12 +106,10 @@ public class DropShadowBorder extends AbstractBorder implements Border {
             bottomLeftShadowPoint = new Point();
             if (showLeftShadow && !showBottomShadow) {
                 bottomLeftShadowPoint.setLocation(x, y + height - shadowSize - shadowSize);
-            }
-            else {
+            } else {
                 if (showLeftShadow && showBottomShadow) {
                     bottomLeftShadowPoint.setLocation(x, y + height - shadowSize);
-                }
-                else {
+                } else {
                     if (!showLeftShadow && showBottomShadow) {
                         bottomLeftShadowPoint.setLocation(x + shadowSize, y + height - shadowSize);
                     }
@@ -134,12 +122,10 @@ public class DropShadowBorder extends AbstractBorder implements Border {
             bottomRightShadowPoint = new Point();
             if (showRightShadow && !showBottomShadow) {
                 bottomRightShadowPoint.setLocation(x + width - shadowSize, y + height - shadowSize - shadowSize);
-            }
-            else {
+            } else {
                 if (showRightShadow && showBottomShadow) {
                     bottomRightShadowPoint.setLocation(x + width - shadowSize, y + height - shadowSize);
-                }
-                else {
+                } else {
                     if (!showRightShadow && showBottomShadow) {
                         bottomRightShadowPoint.setLocation(x + width - shadowSize - shadowSize, y + height - shadowSize);
                     }
@@ -152,12 +138,10 @@ public class DropShadowBorder extends AbstractBorder implements Border {
             topRightShadowPoint = new Point();
             if (showRightShadow && !showTopShadow) {
                 topRightShadowPoint.setLocation(x + width - shadowSize, y + shadowSize);
-            }
-            else {
+            } else {
                 if (showRightShadow && showTopShadow) {
                     topRightShadowPoint.setLocation(x + width - shadowSize, y);
-                }
-                else {
+                } else {
                     if (!showRightShadow && showTopShadow) {
                         topRightShadowPoint.setLocation(x + width - shadowSize - shadowSize, y);
                     }

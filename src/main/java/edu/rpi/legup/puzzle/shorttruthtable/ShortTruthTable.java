@@ -50,11 +50,7 @@ public class ShortTruthTable extends Puzzle {
      */
     public boolean isValidDimensions(int rows, int columns) {
         // Number of rows must be odd to allow for proper spacing between the statements
-        if (rows % 2 != 1) {
-            return false;
-        }
-
-        return true;
+        return rows % 2 == 1;
     }
 
     /**

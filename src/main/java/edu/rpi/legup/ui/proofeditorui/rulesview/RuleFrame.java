@@ -6,12 +6,9 @@ import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.rules.Rule;
 import edu.rpi.legup.ui.lookandfeel.components.MaterialTabbedPaneUI;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
 import javax.swing.*;
-
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 public class RuleFrame extends JPanel {
     private static final String checkBox = "<font style=\"color:#00CD00\"> \u2714 </font>";
@@ -19,17 +16,17 @@ public class RuleFrame extends JPanel {
     private static final String htmlHead = "<html>";
     private static final String htmlTail = "</html>";
 
-    private DirectRulePanel DirectRulePanel;
-    private ContradictionRulePanel contradictionPanel;
-    private CaseRulePanel casePanel;
+    private final DirectRulePanel DirectRulePanel;
+    private final ContradictionRulePanel contradictionPanel;
+    private final CaseRulePanel casePanel;
 
-    private SearchBarPanel searchPanel;
+    private final SearchBarPanel searchPanel;
 
-    private JTabbedPane tabbedPane;
-    private JLabel status;
-    private ButtonGroup buttonGroup;
+    private final JTabbedPane tabbedPane;
+    private final JLabel status;
+    private final ButtonGroup buttonGroup;
 
-    private RuleController controller;
+    private final RuleController controller;
 
     public RuleFrame(RuleController controller) {
 

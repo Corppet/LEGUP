@@ -4,17 +4,10 @@ import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialColors;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialFonts;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -29,7 +22,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     private Color unfocusedBackground;
     private Color focusedSelectionBackground;
     private Color unfocusedSelectionBackground;
-    private boolean drawLine;
+    private final boolean drawLine;
 
     public MaterialTextFieldUI() {
         this(true);
@@ -92,8 +85,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
                         getComponent().select(pos, pos + 1);
                         getComponent().replaceSelection("");
                     }
-                }
-                else {
+                } else {
                     getComponent().replaceSelection("");
                 }
             }
@@ -144,8 +136,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         if (getComponent().hasFocus()) {
             lineColor = focusedBackground;
             c.setSelectionColor(focusedSelectionBackground);
-        }
-        else {
+        } else {
             lineColor = unfocusedBackground;
             c.setSelectionColor(unfocusedSelectionBackground);
         }

@@ -5,14 +5,17 @@ import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.rules.MergeRule;
 import edu.rpi.legup.model.tree.*;
-import edu.rpi.legup.ui.proofeditorui.treeview.*;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeNodeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class MergeCommand extends PuzzleCommand {
-    private TreeViewSelection selection;
+    private final TreeViewSelection selection;
     private TreeTransition transition;
 
     /**
@@ -55,8 +58,7 @@ public class MergeCommand extends PuzzleCommand {
             transition.setRule(new MergeRule());
             transition.setChildNode(mergedNode);
             mergedNode.setParent(transition);
-        }
-        else {
+        } else {
             mergedNode = transition.getChildNode();
         }
 
@@ -112,8 +114,7 @@ public class MergeCommand extends PuzzleCommand {
                     return CommandError.NO_CHILDREN.toString();
                 }
                 nodeList.add(nodeView.getTreeElement());
-            }
-            else {
+            } else {
                 return CommandError.SELECTION_CONTAINS_TRANSITION.toString();
             }
         }

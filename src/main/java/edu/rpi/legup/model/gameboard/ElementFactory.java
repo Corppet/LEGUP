@@ -1,9 +1,9 @@
 package edu.rpi.legup.model.gameboard;
 
+import edu.rpi.legup.save.InvalidFileFormatException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import edu.rpi.legup.save.InvalidFileFormatException;
 
 public abstract class ElementFactory {
 

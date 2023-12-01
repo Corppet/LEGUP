@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class HeyawakeBoard extends GridBoard {
 
-    private Map<Integer, List<HeyawakeCell>> regions;
+    private final Map<Integer, List<HeyawakeCell>> regions;
 
     public HeyawakeBoard(int width, int height) {
         super(width, height);

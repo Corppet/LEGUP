@@ -9,9 +9,6 @@ import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersCell;
 import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class UnresolvedNumberContradictionRule extends ContradictionRule {
 

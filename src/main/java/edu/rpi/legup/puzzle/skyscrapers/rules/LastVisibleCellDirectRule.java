@@ -45,8 +45,8 @@ public class LastVisibleCellDirectRule extends DirectRule {
         initialBoard.setDupeFlag(false);
         initialBoard.setViewFlag(true);
         CellForNumberCaseRule caseRule = new CellForNumberCaseRule();
-        ArrayList<Board> XCandidates = caseRule.getCasesFor(initialBoard, initialBoard.getWestClues().get(finalCell.getLocation().y), (Integer) finalCell.getData());
-        ArrayList<Board> YCandidates = caseRule.getCasesFor(initialBoard, initialBoard.getNorthClues().get(finalCell.getLocation().x), (Integer) finalCell.getData());
+        ArrayList<Board> XCandidates = caseRule.getCasesFor(initialBoard, initialBoard.getWestClues().get(finalCell.getLocation().y), finalCell.getData());
+        ArrayList<Board> YCandidates = caseRule.getCasesFor(initialBoard, initialBoard.getNorthClues().get(finalCell.getLocation().x), finalCell.getData());
         initialBoard.setDupeFlag(dupeTemp);
         initialBoard.setViewFlag(viewTemp);
 
@@ -109,8 +109,7 @@ public class LastVisibleCellDirectRule extends DirectRule {
         System.out.println(modBoard.getModifiedData().isEmpty());
         if (modBoard.getModifiedData().isEmpty()) {
             return null;
-        }
-        else {
+        } else {
             return modBoard;
         }
     }

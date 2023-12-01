@@ -2,14 +2,10 @@ package edu.rpi.legup.ui.lookandfeel.components;
 
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo

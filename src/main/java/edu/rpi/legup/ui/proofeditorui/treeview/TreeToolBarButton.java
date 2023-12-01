@@ -1,11 +1,11 @@
 package edu.rpi.legup.ui.proofeditorui.treeview;
 
 import javax.swing.*;
-import java.awt.Dimension;
+import java.awt.*;
 
 public class TreeToolBarButton extends JButton {
 
-    private TreeToolBarName name;
+    private final TreeToolBarName name;
     private final Dimension MINIMUM_DIMENSION = new Dimension(60, 60);
 
     public TreeToolBarButton(ImageIcon imageIcon, TreeToolBarName name) {

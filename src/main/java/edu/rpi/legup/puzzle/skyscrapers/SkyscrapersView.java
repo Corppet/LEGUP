@@ -9,19 +9,17 @@ import edu.rpi.legup.ui.boardview.GridBoardView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SkyscrapersView extends GridBoardView {
     private final static Logger LOGGER = LogManager.getLogger(SkyscrapersView.class.getName());
 
-    private ArrayList<SkyscrapersLineView> lineViews;
-    private ArrayList<SkyscrapersClueView> northClues;
-    private ArrayList<SkyscrapersClueView> eastClues;
-    private ArrayList<SkyscrapersClueView> southClues;
-    private ArrayList<SkyscrapersClueView> westClues;
+    private final ArrayList<SkyscrapersLineView> lineViews;
+    private final ArrayList<SkyscrapersClueView> northClues;
+    private final ArrayList<SkyscrapersClueView> eastClues;
+    private final ArrayList<SkyscrapersClueView> southClues;
+    private final ArrayList<SkyscrapersClueView> westClues;
 
     public SkyscrapersView(SkyscrapersBoard board) {
         super(new BoardController(), new SkyscrapersController(), board.getDimension());
@@ -142,8 +140,7 @@ public class SkyscrapersView extends GridBoardView {
 
             if (board instanceof CaseBoard) {
                 setCasePickable();
-            }
-            else {
+            } else {
                 for (ElementView elementView : elementViews) {
                     elementView.setPuzzleElement(board.getPuzzleElement(elementView.getPuzzleElement()));
                     elementView.setShowCasePicker(false);

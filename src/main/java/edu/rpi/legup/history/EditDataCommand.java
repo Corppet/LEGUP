@@ -19,9 +19,9 @@ public class EditDataCommand extends PuzzleCommand {
     private PuzzleElement savePuzzleElement;
     private PuzzleElement puzzleElement;
 
-    private ElementView elementView;
-    private TreeViewSelection selection;
-    private MouseEvent event;
+    private final ElementView elementView;
+    private final TreeViewSelection selection;
+    private final MouseEvent event;
 
     /**
      * EditDataCommand Constructor create a puzzle command for editing a board
@@ -69,8 +69,7 @@ public class EditDataCommand extends PuzzleCommand {
 
             puzzleElement = board.getPuzzleElement(selectedPuzzleElement);
             savePuzzleElement = puzzleElement.copy();
-        }
-        else {
+        } else {
             transition = (TreeTransition) treeElement;
             puzzleElement = board.getPuzzleElement(selectedPuzzleElement);
             savePuzzleElement = puzzleElement.copy();
@@ -82,8 +81,7 @@ public class EditDataCommand extends PuzzleCommand {
 
         if (prevBoard.getPuzzleElement(selectedPuzzleElement).equalsData(puzzleElement)) {
             board.removeModifiedData(puzzleElement);
-        }
-        else {
+        } else {
             board.addModifiedData(puzzleElement);
         }
         transition.propagateChange(puzzleElement);
@@ -116,19 +114,16 @@ public class EditDataCommand extends PuzzleCommand {
             TreeNodeView nodeView = (TreeNodeView) selectedView;
             if (!nodeView.getChildrenViews().isEmpty()) {
                 return CommandError.UNMODIFIABLE_BOARD.toString();
-            }
-            else {
+            } else {
                 if (!board.getPuzzleElement(selectedPuzzleElement).isModifiable()) {
                     return CommandError.UNMODIFIABLE_DATA.toString();
                 }
             }
-        }
-        else {
+        } else {
             TreeTransitionView transitionView = (TreeTransitionView) selectedView;
             if (!transitionView.getTreeElement().getBoard().isModifiable()) {
                 return CommandError.UNMODIFIABLE_BOARD.toString();
-            }
-            else {
+            } else {
                 if (!board.getPuzzleElement(selectedPuzzleElement).isModifiable()) {
                     return CommandError.UNMODIFIABLE_DATA.toString();
                 }
@@ -162,8 +157,7 @@ public class EditDataCommand extends PuzzleCommand {
 
         if (prevBoard.getPuzzleElement(selectedPuzzleElement).equalsData(puzzleElement)) {
             board.removeModifiedData(puzzleElement);
-        }
-        else {
+        } else {
             board.addModifiedData(puzzleElement);
         }
         transition.propagateChange(puzzleElement);

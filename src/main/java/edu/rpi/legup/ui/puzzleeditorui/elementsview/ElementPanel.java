@@ -1,9 +1,7 @@
 package edu.rpi.legup.ui.puzzleeditorui.elementsview;
 
-import edu.rpi.legup.model.rules.Rule;
-import edu.rpi.legup.ui.WrapLayout;
 import edu.rpi.legup.model.elements.Element;
-import edu.rpi.legup.ui.proofeditorui.rulesview.RuleButton;
+import edu.rpi.legup.ui.WrapLayout;
 
 import javax.swing.*;
 import java.util.ArrayList;

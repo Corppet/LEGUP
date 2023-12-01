@@ -31,8 +31,7 @@ public class FinishWithWhiteDirectRule extends DirectRule {
 
         if (FillapixUtilities.isForcedWhite(parentBoard, cell)) {
             return null;
-        }
-        else {
+        } else {
             return super.getInvalidUseOfRuleMessage() + ": This cell is not forced to be white";
         }
     }
@@ -55,8 +54,7 @@ public class FinishWithWhiteDirectRule extends DirectRule {
         }
         if (fillapixBoard.getModifiedData().isEmpty()) {
             return null;
-        }
-        else {
+        } else {
             return fillapixBoard;
         }
     }

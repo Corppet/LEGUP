@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SudokuCell extends GridCell<Integer> {
-    private int groupIndex;
+    private final int groupIndex;
     private Set<Integer> annotations;
-    private int max;
+    private final int max;
 
     /**
      * SudokuCell Constructor - creates a new Sudoku cell to hold the puzzleElement

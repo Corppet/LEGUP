@@ -1,17 +1,12 @@
 package edu.rpi.legup.model.rules;
 
+import edu.rpi.legup.app.LegupPreferences;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.tree.TreeTransition;
 
-import edu.rpi.legup.app.LegupPreferences;
-
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.Image;
-import java.awt.Graphics2D;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @RegisterRule
 public abstract class Rule {

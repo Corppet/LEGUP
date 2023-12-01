@@ -1,6 +1,9 @@
 package edu.rpi.legup.model;
 
-import edu.rpi.legup.model.elements.*;
+import edu.rpi.legup.model.elements.Element;
+import edu.rpi.legup.model.elements.NonPlaceableElement;
+import edu.rpi.legup.model.elements.PlaceableElement;
+import edu.rpi.legup.model.elements.RegisterElement;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.ElementFactory;
 import edu.rpi.legup.model.observer.IBoardListener;
@@ -12,14 +15,13 @@ import edu.rpi.legup.model.tree.Tree;
 import edu.rpi.legup.model.tree.TreeElement;
 import edu.rpi.legup.model.tree.TreeElementType;
 import edu.rpi.legup.model.tree.TreeNode;
-import edu.rpi.legup.puzzle.nurikabe.NurikabeType;
-import edu.rpi.legup.ui.puzzleeditorui.elementsview.NonPlaceableElementPanel;
-import edu.rpi.legup.utility.LegupUtils;
-import org.w3c.dom.Document;
-import edu.rpi.legup.model.elements.Element;
-import org.w3c.dom.Node;
 import edu.rpi.legup.save.InvalidFileFormatException;
 import edu.rpi.legup.ui.boardview.BoardView;
+import edu.rpi.legup.utility.LegupUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,14 +32,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class Puzzle implements IBoardSubject, ITreeSubject {
     private static final Logger LOGGER = LogManager.getLogger(Puzzle.class.getName());
@@ -50,8 +49,8 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
     protected PuzzleExporter exporter;
     protected ElementFactory factory;
 
-    private List<IBoardListener> boardListeners;
-    private List<ITreeListener> treeListeners;
+    private final List<IBoardListener> boardListeners;
+    private final List<ITreeListener> treeListeners;
 
     protected List<DirectRule> directRules;
     protected List<ContradictionRule> contradictionRules;
@@ -107,8 +106,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
                                 default:
                                     break;
                             }
-                        }
-                        catch (InvocationTargetException e) {
+                        } catch (InvocationTargetException e) {
                             System.out.println("    Failed ");
                             e.getTargetException().printStackTrace();
                         }
@@ -120,8 +118,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
 //                InstantiationException | IllegalAccessException | InvocationTargetException e) {
 //            LOGGER.error("Unable to find rules for " + this.getClass().getSimpleName(), e);
 //        }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOGGER.error("Unable to find elements for " + this.getClass().getSimpleName(), e);
         }
     }
@@ -161,8 +158,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
                                 default:
                                     break;
                             }
-                        }
-                        catch (InvocationTargetException e) {
+                        } catch (InvocationTargetException e) {
                             System.out.println("    Failed ");
                             e.getTargetException().printStackTrace();
                         }
@@ -174,8 +170,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
 //                InstantiationException | IllegalAccessException | InvocationTargetException e) {
 //            LOGGER.error("Unable to find rules for " + this.getClass().getSimpleName(), e);
 //        }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOGGER.error("Unable to find rules for " + this.getClass().getSimpleName(), e);
         }
     }
@@ -231,12 +226,10 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
                     TreeNode node = (TreeNode) leaf;
                     if (!node.isRoot()) {
                         isComplete &= node.getParent().isContradictoryBranch() || isBoardComplete(node.getBoard());
-                    }
-                    else {
+                    } else {
                         isComplete &= isBoardComplete(node.getBoard());
                     }
-                }
-                else {
+                } else {
                     isComplete = false;
                 }
             }
@@ -268,8 +261,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
     public void importPuzzle(String fileName) throws InvalidFileFormatException {
         try {
             importPuzzle(new FileInputStream(fileName));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             LOGGER.error("Importing puzzle error", e);
             throw new InvalidFileFormatException("Could not find file");
         }
@@ -287,8 +279,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             document = builder.parse(inputStream);
-        }
-        catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (IOException | SAXException | ParserConfigurationException e) {
             LOGGER.error("Importing puzzle error", e);
             throw new InvalidFileFormatException("Could not find file");
         }
@@ -300,8 +291,7 @@ public abstract class Puzzle implements IBoardSubject, ITreeSubject {
                 throw new InvalidFileFormatException("Puzzle importer null");
             }
             importer.initializePuzzle(node);
-        }
-        else {
+        } else {
             LOGGER.error("Invalid file");
             throw new InvalidFileFormatException("Invalid file: must be a Legup file");
         }

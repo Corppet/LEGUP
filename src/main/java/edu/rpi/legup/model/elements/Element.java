@@ -1,7 +1,5 @@
 package edu.rpi.legup.model.elements;
 
-import edu.rpi.legup.model.rules.RuleType;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

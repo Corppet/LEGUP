@@ -2,17 +2,11 @@ package edu.rpi.legup.ui.lookandfeel.components;
 
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JSpinner;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialSpinnerUI extends BasicSpinnerUI {
 
@@ -51,8 +45,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         JButton button;
         if (icon != null) {
             button = new JButton(icon);
-        }
-        else {
+        } else {
             button = new BasicArrowButton(SwingConstants.NORTH);
         }
         button.setFocusPainted(false);
@@ -70,8 +63,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         JButton button;
         if (icon != null) {
             button = new JButton(icon);
-        }
-        else {
+        } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
         button.setFocusPainted(false);

@@ -10,10 +10,10 @@ import java.util.Set;
 
 public class PossibleNumberCaseBoard extends CaseBoard {
 
-    private SudokuCell cell;
-    private Set<Integer> pickableRegions;
-    private Set<Integer> pickableRows;
-    private Set<Integer> pickableCols;
+    private final SudokuCell cell;
+    private final Set<Integer> pickableRegions;
+    private final Set<Integer> pickableRows;
+    private final Set<Integer> pickableCols;
 
 
     public PossibleNumberCaseBoard(SudokuBoard baseBoard, PossibleNumberCaseRule caseRule, SudokuCell cell) {
@@ -37,16 +37,14 @@ public class PossibleNumberCaseBoard extends CaseBoard {
                     return true;
                 }
             }
-        }
-        else {
+        } else {
             if (e.isControlDown()) {
                 for (int c : pickableCols) {
                     if (c == sudokuCell.getLocation().x) {
                         return true;
                     }
                 }
-            }
-            else {
+            } else {
                 for (int r : pickableRegions) {
                     if (r == sudokuCell.getGroupIndex()) {
                         return true;

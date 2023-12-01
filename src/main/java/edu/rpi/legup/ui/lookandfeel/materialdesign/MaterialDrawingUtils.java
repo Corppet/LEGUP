@@ -1,9 +1,6 @@
 package edu.rpi.legup.ui.lookandfeel.materialdesign;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Map;
 
 public class MaterialDrawingUtils {
@@ -24,8 +21,7 @@ public class MaterialDrawingUtils {
 
             //g2d.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
             return g2d;
-        }
-        else {
+        } else {
             // Desktop hints not supported on this platform
             return g;
         }

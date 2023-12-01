@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class HeyawakeView extends GridBoardView {
 
-    private Map<Integer, Area> regionsBoundaries;
+    private final Map<Integer, Area> regionsBoundaries;
 
     public HeyawakeView(HeyawakeBoard board) {
         super(new BoardController(), new HeyawakeController(), board.getDimension());
@@ -31,8 +31,7 @@ public class HeyawakeView extends GridBoardView {
             int regionIndex = cell.getRegionIndex();
             if (regionsBoundaries.get(regionIndex) == null) {
                 regionsBoundaries.put(regionIndex, new Area(elementView.getBounds()));
-            }
-            else {
+            } else {
                 regionsBoundaries.get(regionIndex).add(new Area(elementView.getBounds()));
             }
         }

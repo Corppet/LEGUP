@@ -42,8 +42,7 @@ public abstract class PuzzleImporter {
     public void initializePuzzle(int rows, int columns) throws RuntimeException {
         if (this.puzzle.isValidDimensions(rows, columns)) {
             initializeBoard(rows, columns);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Invalid dimensions provided");
         }
     }
@@ -76,8 +75,7 @@ public abstract class PuzzleImporter {
                     }
                     initializeBoard(n);
                     initBoard = true;
-                }
-                else {
+                } else {
                     if (n.getNodeName().equalsIgnoreCase("proof")) {
                         if (initProof) {
                             throw new InvalidFileFormatException("Puzzle creation error: duplicate proof puzzleElement found");
@@ -87,8 +85,7 @@ public abstract class PuzzleImporter {
                         }
                         initializeProof(n);
                         initProof = true;
-                    }
-                    else {
+                    } else {
                         if (!n.getNodeName().equalsIgnoreCase("#text")) {
                             throw new InvalidFileFormatException("Puzzle creation error: unknown node found in file");
                         }
@@ -102,8 +99,7 @@ public abstract class PuzzleImporter {
             if (!initProof) {
                 createDefaultTree();
             }
-        }
-        else {
+        } else {
             throw new InvalidFileFormatException("Invalid file format; does not contain \"puzzle\" node");
         }
     }
@@ -147,16 +143,14 @@ public abstract class PuzzleImporter {
                     }
                     createTree(n);
                     initTree = true;
-                }
-                else {
+                } else {
                     throw new InvalidFileFormatException("Proof Tree construction error: unknown puzzleElement found");
                 }
             }
             if (!initTree) {
                 createDefaultTree();
             }
-        }
-        else {
+        } else {
             throw new InvalidFileFormatException("Invalid file format; does not contain \"proof\" node");
         }
     }
@@ -231,8 +225,7 @@ public abstract class PuzzleImporter {
                         transition.addParent(treeNode);
                         treeNode.addChild(transition);
                         continue;
-                    }
-                    else {
+                    } else {
                         throw new InvalidFileFormatException("Proof Tree construction error: duplicate transition ID found");
                     }
 
@@ -313,8 +306,7 @@ public abstract class PuzzleImporter {
                 for (TreeTransition trans : treeNode.getChildren()) {
                     treeElements.add(trans);
                 }
-            }
-            else {
+            } else {
                 TreeTransition treeTransition = (TreeTransition) element;
 
                 if (connectedTransitions.get(treeTransition)) {
@@ -360,8 +352,7 @@ public abstract class PuzzleImporter {
             if (childNode != null) {
                 childNode.setBoard(mergedBoard.copy());
             }
-        }
-        else {
+        } else {
             NodeList cellList = transElement.getChildNodes();
             for (int i = 0; i < cellList.getLength(); i++) {
                 Node node = cellList.item(i);
@@ -372,8 +363,7 @@ public abstract class PuzzleImporter {
                     board.setPuzzleElement(cell.getIndex(), cell);
                     board.addModifiedData(cell);
                     transition.propagateChange(cell);
-                }
-                else {
+                } else {
                     if (!node.getNodeName().equalsIgnoreCase("#text")) {
                         throw new InvalidFileFormatException("Proof Tree construction error: unknown node in transition");
                     }

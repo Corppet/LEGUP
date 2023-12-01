@@ -1,6 +1,6 @@
 package edu.rpi.legup.ui.proofeditorui.rulesview;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class CaseRulePanel extends RulePanel {
     /**

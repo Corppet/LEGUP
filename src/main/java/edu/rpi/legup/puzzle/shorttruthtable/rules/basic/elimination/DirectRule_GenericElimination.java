@@ -1,7 +1,7 @@
 package edu.rpi.legup.puzzle.shorttruthtable.rules.basic.elimination;
 
-import edu.rpi.legup.puzzle.shorttruthtable.rules.basic.DirectRule_Generic;
 import edu.rpi.legup.model.rules.ContradictionRule;
+import edu.rpi.legup.puzzle.shorttruthtable.rules.basic.DirectRule_Generic;
 
 public abstract class DirectRule_GenericElimination extends DirectRule_Generic {
 

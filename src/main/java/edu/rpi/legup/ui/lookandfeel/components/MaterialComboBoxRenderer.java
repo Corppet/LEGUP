@@ -1,11 +1,8 @@
 package edu.rpi.legup.ui.lookandfeel.components;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 

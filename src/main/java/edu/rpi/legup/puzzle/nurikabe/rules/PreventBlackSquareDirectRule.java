@@ -2,8 +2,8 @@ package edu.rpi.legup.puzzle.nurikabe.rules;
 
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.rules.ContradictionRule;
+import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeBoard;
@@ -47,8 +47,7 @@ public class PreventBlackSquareDirectRule extends DirectRule {
 
         if (contraRule.checkContradiction(modified) == null) {
             return null;
-        }
-        else {
+        } else {
             return "Does not contain a contradiction at this index";
         }
     }

@@ -5,7 +5,10 @@ import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.tree.*;
-import edu.rpi.legup.ui.proofeditorui.treeview.*;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeNodeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +16,9 @@ import java.util.Map;
 
 public class ApplyDefaultDirectRuleCommand extends PuzzleCommand {
 
-    private TreeViewSelection selection;
-    private DirectRule rule;
-    private Map<TreeNode, TreeTransition> addMap;
+    private final TreeViewSelection selection;
+    private final DirectRule rule;
+    private final Map<TreeNode, TreeTransition> addMap;
 
     /**
      * ApplyDefaultDirectRuleCommand Constructor creates a command for applying the default of a basic rule
@@ -39,24 +42,21 @@ public class ApplyDefaultDirectRuleCommand extends PuzzleCommand {
     public String getErrorString() {
         List<TreeElementView> selectedViews = selection.getSelectedViews();
         if (selectedViews.isEmpty()) {
-            return CommandError.DEFAULT_APPLICATION + " - " + CommandError.NO_SELECTED_VIEWS.toString();
-        }
-        else {
+            return CommandError.DEFAULT_APPLICATION + " - " + CommandError.NO_SELECTED_VIEWS;
+        } else {
             for (TreeElementView view : selectedViews) {
                 TreeElement element = view.getTreeElement();
                 if (element.getType() == TreeElementType.NODE) {
                     TreeNode node = (TreeNode) element;
                     if (!node.getChildren().isEmpty()) {
-                        return CommandError.DEFAULT_APPLICATION + " - " + CommandError.NO_CHILDREN.toString();
-                    }
-                    else {
+                        return CommandError.DEFAULT_APPLICATION + " - " + CommandError.NO_CHILDREN;
+                    } else {
                         if (rule.getDefaultBoard(node) == null) {
                             return CommandError.DEFAULT_APPLICATION + " - " + "This selection contains a tree element that this rule cannot be applied to.";
                         }
                     }
-                }
-                else {
-                    return CommandError.DEFAULT_APPLICATION + " - " + CommandError.SELECTION_CONTAINS_TRANSITION.toString();
+                } else {
+                    return CommandError.DEFAULT_APPLICATION + " - " + CommandError.SELECTION_CONTAINS_TRANSITION;
                 }
             }
         }
@@ -82,8 +82,7 @@ public class ApplyDefaultDirectRuleCommand extends PuzzleCommand {
                 transition = (TreeTransition) tree.addTreeElement(node);
                 childNode = (TreeNode) tree.addTreeElement(transition);
                 addMap.put(node, transition);
-            }
-            else {
+            } else {
                 tree.addTreeElement(node, transition);
                 childNode = transition.getChildNode();
             }

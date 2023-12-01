@@ -1,12 +1,5 @@
 package edu.rpi.legup.puzzle.fillapix.rules;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.CaseBoard;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
@@ -18,12 +11,16 @@ import edu.rpi.legup.puzzle.fillapix.FillapixCell;
 import edu.rpi.legup.puzzle.fillapix.FillapixCellType;
 import edu.rpi.legup.puzzle.fillapix.FillapixUtilities;
 
+import java.awt.*;
+import java.util.List;
+import java.util.*;
+
 public class SatisfyClueCaseRule extends CaseRule {
     public SatisfyClueCaseRule() {
         super("FPIX-CASE-0002",
-        "Satisfy Clue",
-        "Each clue must touch that number of squares.",
-        "edu/rpi/legup/images/fillapix/cases/SatisfyClue.png");
+                "Satisfy Clue",
+                "Each clue must touch that number of squares.",
+                "edu/rpi/legup/images/fillapix/cases/SatisfyClue.png");
     }
 
     @Override
@@ -70,26 +67,25 @@ public class SatisfyClueCaseRule extends CaseRule {
         if (cellNumBlack > cellMaxBlack || cellNumEmpty == 0) {
             return cases;
         }
-        
+
         // generate all cases as boolean expressions
         ArrayList<boolean[]> combinations;
         combinations = FillapixUtilities.getCombinations(cellMaxBlack - cellNumBlack, cellNumEmpty);
 
-        for (int i=0; i < combinations.size(); i++) {
+        for (int i = 0; i < combinations.size(); i++) {
             Board case_ = board.copy();
-            for (int j=0; j < combinations.get(i).length; j++) {
+            for (int j = 0; j < combinations.get(i).length; j++) {
                 cell = (FillapixCell) case_.getPuzzleElement(emptyCells.get(j));
                 if (combinations.get(i)[j]) {
                     cell.setCellType(FillapixCellType.BLACK);
-                }
-                else {
+                } else {
                     cell.setCellType(FillapixCellType.WHITE);
                 }
                 case_.addModifiedData(cell);
             }
             cases.add(case_);
         }
-        
+
         return cases;
     }
 
@@ -99,13 +95,13 @@ public class SatisfyClueCaseRule extends CaseRule {
         List<TreeTransition> childTransitions = parent.getChildren();
 
         /*
-         * In order for the transition to be valid, it can only be applied to 
+         * In order for the transition to be valid, it can only be applied to
          * one cell, thus:
          *          * there must be modified cells
          *          * all modified cells must share at least one common adjacent
          *              cell
          *          * all modified cells must fit within a 3X3 square
-         *          * the center of one of the possible squaress must be a cell 
+         *          * the center of one of the possible squaress must be a cell
          *              with a number
          *          * that cells possible combinations must match the transitions
          * If all the above is verified, then the transition is valid
@@ -142,13 +138,13 @@ public class SatisfyClueCaseRule extends CaseRule {
         }
 
 
-        /* get the center of all possible 3X3 squares, 
+        /* get the center of all possible 3X3 squares,
          * and collect all that have numbers */
         FillapixBoard board = (FillapixBoard) transition.getParents().get(0).getBoard();
         Set<FillapixCell> possibleCenters = new TreeSet<FillapixCell>();
         possibleCenters.addAll(FillapixUtilities.getAdjacentCells(board, (FillapixCell) modCells.iterator().next()));
         for (PuzzleElement modCell : modCells) {
-            possibleCenters.retainAll((FillapixUtilities.getAdjacentCells(board, (FillapixCell) modCell))); 
+            possibleCenters.retainAll((FillapixUtilities.getAdjacentCells(board, (FillapixCell) modCell)));
         }
         // removing all elements without a valid number
         possibleCenters.removeIf(x -> x.getNumber() < 0 || x.getNumber() >= 10);
@@ -192,13 +188,8 @@ public class SatisfyClueCaseRule extends CaseRule {
                 }
 
                 boolean[] translatedModCells = new boolean[transModCells.size()];
-                for (int i=0; i < transModCells.size(); i++) {
-                    if (transModCells.get(i).getType() == FillapixCellType.BLACK) {
-                        translatedModCells[i] = true;
-                    }
-                    else {
-                        translatedModCells[i] = false;
-                    }
+                for (int i = 0; i < transModCells.size(); i++) {
+                    translatedModCells[i] = transModCells.get(i).getType() == FillapixCellType.BLACK;
                 }
 
                 // try to find the above state in the combinations, remove if found

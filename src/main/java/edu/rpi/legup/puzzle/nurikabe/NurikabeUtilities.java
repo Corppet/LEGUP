@@ -60,8 +60,7 @@ public class NurikabeUtilities {
                             downCell.getType() == NurikabeType.WHITE)) {
                         regions.union(cell, downCell);
                     }
-                }
-                else {
+                } else {
                     if (cell.getType() == NurikabeType.BLACK) {
                         if (rightCell != null && rightCell.getType() == NurikabeType.BLACK) {
                             regions.union(cell, rightCell);
@@ -69,8 +68,7 @@ public class NurikabeUtilities {
                         if (downCell != null && downCell.getType() == NurikabeType.BLACK) {
                             regions.union(cell, downCell);
                         }
-                    }
-                    else {
+                    } else {
                         if (cell.getType() == NurikabeType.UNKNOWN) {
                             if (rightCell != null && rightCell.getType() == NurikabeType.UNKNOWN) {
                                 regions.union(cell, rightCell);
@@ -245,7 +243,7 @@ public class NurikabeUtilities {
     /**
      * Gets all the non-black cells connected to the given cell
      *
-     * @param board nurikabe board
+     * @param board  nurikabe board
      * @param center nurikabe cell
      * @return a set of all white/numbered cells in the region
      */

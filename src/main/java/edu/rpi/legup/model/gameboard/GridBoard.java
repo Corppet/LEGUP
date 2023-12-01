@@ -1,7 +1,6 @@
 package edu.rpi.legup.model.gameboard;
 
 import edu.rpi.legup.model.elements.Element;
-import edu.rpi.legup.puzzle.nurikabe.NurikabeCell;
 import edu.rpi.legup.puzzle.treetent.TreeTentBoard;
 import edu.rpi.legup.puzzle.treetent.TreeTentClue;
 
@@ -73,22 +72,17 @@ public class GridBoard extends Board {
             TreeTentClue clue = treeTentBoard.getClue(x, y);
             if (y == dimension.height && clue.getData() < dimension.width) {
                 clue.setData(clue.getData() + 1);
-            }
-            else {
+            } else {
                 if (x == dimension.width && clue.getData() < dimension.height) {
                     clue.setData(clue.getData() + 1);
-                }
-                else {
+                } else {
                     clue.setData(0);
                 }
             }
-        }
-        else {
+        } else {
             if (e != null && y * dimension.width + x >= puzzleElements.size() || x >= dimension.width ||
                     y >= dimension.height || x < 0 || y < 0) {
-                return;
-            }
-            else {
+            } else {
                 if (e != null) {
                     puzzleElements.get(y * dimension.width + x).setType(e, m);
                 }

@@ -9,7 +9,10 @@ import edu.rpi.legup.puzzle.nurikabe.NurikabeType;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeUtilities;
 
 import java.awt.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 public class UnreachableWhiteCellContradictionRule extends ContradictionRule {
 

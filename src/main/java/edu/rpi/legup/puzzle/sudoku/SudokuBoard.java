@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SudokuBoard extends GridBoard {
-    private int size;
-    private int groupSize;
+    private final int size;
+    private final int groupSize;
 
     /**
      * SudokuBoard Constructor - create a new Sudoku board

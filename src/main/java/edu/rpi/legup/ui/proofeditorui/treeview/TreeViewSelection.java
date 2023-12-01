@@ -1,8 +1,8 @@
 package edu.rpi.legup.ui.proofeditorui.treeview;
 
 import java.awt.*;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TreeViewSelection {
     private ArrayList<TreeElementView> selectedViews;
@@ -66,8 +66,7 @@ public class TreeViewSelection {
         if (selectedViews.contains(treeElementView)) {
             selectedViews.remove(treeElementView);
             treeElementView.setSelected(false);
-        }
-        else {
+        } else {
             selectedViews.add(treeElementView);
             treeElementView.setSelected(true);
         }

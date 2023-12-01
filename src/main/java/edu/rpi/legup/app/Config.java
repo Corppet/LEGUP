@@ -1,25 +1,27 @@
 package edu.rpi.legup.app;
 
-import java.io.*;
-import java.util.*;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class Config {
     private final static Logger Logger = LogManager.getLogger(Config.class.getName());
 
-    private Map<String, String> puzzles;
-    private Map<String, Boolean> fileCreationDisabledStatuses;
+    private final Map<String, String> puzzles;
+    private final Map<String, Boolean> fileCreationDisabledStatuses;
     private static final String CONFIG_LOCATION = "edu/rpi/legup/legup/config";
 
     /**
@@ -146,8 +148,7 @@ public class Config {
                 this.fileCreationDisabledStatuses.put(name, Boolean.valueOf(status));
             }
 
-        }
-        catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new InvalidConfigException(e.getMessage());
         }
     }

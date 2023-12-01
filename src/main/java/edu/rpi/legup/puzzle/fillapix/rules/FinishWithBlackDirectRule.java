@@ -31,8 +31,7 @@ public class FinishWithBlackDirectRule extends DirectRule {
 
         if (FillapixUtilities.isForcedBlack(parentBoard, cell)) {
             return null;
-        }
-        else {
+        } else {
             return super.getInvalidUseOfRuleMessage() + ": This cell is not forced to be black";
         }
     }
@@ -55,8 +54,7 @@ public class FinishWithBlackDirectRule extends DirectRule {
         }
         if (fillapixBoard.getModifiedData().isEmpty()) {
             return null;
-        }
-        else {
+        } else {
             return fillapixBoard;
         }
     }

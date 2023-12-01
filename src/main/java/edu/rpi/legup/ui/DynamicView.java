@@ -10,7 +10,10 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -19,7 +22,7 @@ import static java.awt.BorderLayout.*;
 
 public class DynamicView extends JPanel {
 
-    private ScrollView scrollView;
+    private final ScrollView scrollView;
     private JPanel zoomWrapper;
     private JPanel zoomer;
     private JLabel status;
@@ -50,8 +53,7 @@ public class DynamicView extends JPanel {
     private JPanel setUpZoomer(DynamicViewType type) {
         if (type == DynamicViewType.BOARD) {
             return setUpBoardZoomer();
-        }
-        else {
+        } else {
             if (type == DynamicViewType.PROOF_TREE) {
                 return setUpProofTreeZoomer();
             }
@@ -167,8 +169,7 @@ public class DynamicView extends JPanel {
             zoomWrapper.setLayout(new BorderLayout());
             zoomWrapper.add(status, WEST);
             zoomWrapper.add(zoomer, EAST);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return zoomWrapper;

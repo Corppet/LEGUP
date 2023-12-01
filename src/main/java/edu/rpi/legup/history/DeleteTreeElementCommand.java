@@ -4,12 +4,15 @@ import edu.rpi.legup.app.GameBoardFacade;
 import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.observer.ITreeListener;
 import edu.rpi.legup.model.tree.*;
-import edu.rpi.legup.ui.proofeditorui.treeview.*;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeNodeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeTransitionView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
 import java.util.List;
 
 public class DeleteTreeElementCommand extends PuzzleCommand {
-    private TreeViewSelection selection;
+    private final TreeViewSelection selection;
 
     /**
      * DeleteTreeElementCommand Constructor creates a PuzzleCommand for deleting a tree puzzleElement
@@ -35,8 +38,7 @@ public class DeleteTreeElementCommand extends PuzzleCommand {
         if (firstSelectedView.getType() == TreeElementType.NODE) {
             TreeNodeView nodeView = (TreeNodeView) firstSelectedView;
             newSelectedView = nodeView.getParentView();
-        }
-        else {
+        } else {
             TreeTransitionView transitionView = (TreeTransitionView) firstSelectedView;
             newSelectedView = transitionView.getParentViews().get(0);
         }
@@ -89,8 +91,7 @@ public class DeleteTreeElementCommand extends PuzzleCommand {
                 node.getParent().setChildNode(node);
 
                 puzzle.notifyTreeListeners(listener -> listener.onTreeElementAdded(node));
-            }
-            else {
+            } else {
                 TreeTransition transition = (TreeTransition) element;
                 transition.getParents().forEach(node -> node.addChild(transition));
                 transition.getParents().get(0).getChildren().forEach(TreeTransition::reverify);

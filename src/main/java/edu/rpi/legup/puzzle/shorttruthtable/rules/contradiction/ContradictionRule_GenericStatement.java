@@ -4,7 +4,6 @@ package edu.rpi.legup.puzzle.shorttruthtable.rules.contradiction;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.rules.ContradictionRule;
-
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableBoard;
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCell;
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCellType;

@@ -1,12 +1,10 @@
 package edu.rpi.legup.ui;
 
 import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.AWTEvent;
+import java.awt.*;
 
 public class ZoomablePane extends JLayeredPane {
-    private ScrollView viewer;
+    private final ScrollView viewer;
 
     /**
      * ZoomablePane Constructor creates scalable JComponent

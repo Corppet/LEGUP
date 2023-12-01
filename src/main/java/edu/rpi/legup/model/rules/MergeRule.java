@@ -9,9 +9,6 @@ import edu.rpi.legup.model.tree.TreeTransition;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import static edu.rpi.legup.model.rules.RuleType.MERGE;
 
 public class MergeRule extends Rule {

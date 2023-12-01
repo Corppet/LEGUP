@@ -3,13 +3,7 @@ package edu.rpi.legup.puzzle.shorttruthtable.rules.caserule;
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.CaseBoard;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableBoard;
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCell;
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCellType;
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableStatement;
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableOperation;
-
+import edu.rpi.legup.puzzle.shorttruthtable.*;
 
 import java.util.ArrayList;
 
@@ -86,7 +80,8 @@ public abstract class CaseRule_GenericStatement extends CaseRule_Generic {
 
     /**
      * Collects a list of boards for each possible outcome of case-rule application
-     * @param board current board state
+     *
+     * @param board         current board state
      * @param puzzleElement case rule operator
      * @param possibilities list of possibilities for operator state
      * @return ArrayList of Boards

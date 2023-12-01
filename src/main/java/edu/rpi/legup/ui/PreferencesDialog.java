@@ -1,24 +1,25 @@
 package edu.rpi.legup.ui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import edu.rpi.legup.app.LegupPreferences;
 import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.rules.Rule;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialBorders;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialFonts;
+import edu.rpi.legup.ui.proofeditorui.rulesview.RuleFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import edu.rpi.legup.ui.proofeditorui.rulesview.RuleFrame;
-import edu.rpi.legup.ui.proofeditorui.rulesview.RulePanel;
 
 public class PreferencesDialog extends JDialog {
 
@@ -36,8 +37,7 @@ public class PreferencesDialog extends JDialog {
     static {
         try {
             folderIcon = ImageIO.read(PreferencesDialog.class.getResource("/edu/rpi/legup/imgs/folder.png"));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Unable to locate icons");
         }
     }
@@ -98,13 +98,11 @@ public class PreferencesDialog extends JDialog {
         try {
             if (Boolean.valueOf(prefs.getUserPref(LegupPreferences.DARK_MODE))) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-            }
-            else {
+            } else {
                 UIManager.setLookAndFeel(new FlatLightLaf());
             }
             com.formdev.flatlaf.FlatLaf.updateUI();
-        }
-        catch (UnsupportedLookAndFeelException e) {
+        } catch (UnsupportedLookAndFeelException e) {
             System.err.println("Not supported ui look and feel");
         }
     }
@@ -307,12 +305,10 @@ public class PreferencesDialog extends JDialog {
                 String combo = "";
                 if (e.isControlDown()) {
                     combo += "Ctrl + ";
-                }
-                else {
+                } else {
                     if (e.isShiftDown()) {
                         combo += "Shift + ";
-                    }
-                    else {
+                    } else {
                         if (e.isAltDown()) {
                             combo += "Alt + ";
                         }
@@ -363,7 +359,7 @@ public class PreferencesDialog extends JDialog {
         prefs.setUserPref(LegupPreferences.IMMEDIATE_FEEDBACK, Boolean.toString(immFeedback.isSelected()));
         prefs.setUserPref(LegupPreferences.COLOR_BLIND, Boolean.toString(colorBlind.isSelected()));
 
-        if(rulesFrame != null) {
+        if (rulesFrame != null) {
             rulesFrame.getCasePanel().updateRules();
             rulesFrame.getDirectRulePanel().updateRules();
             rulesFrame.getContradictionPanel().updateRules();

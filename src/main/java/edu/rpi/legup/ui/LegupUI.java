@@ -1,22 +1,22 @@
 package edu.rpi.legup.ui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.security.InvalidParameterException;
-import java.util.Objects;
-
-import javax.swing.*;
-
-
-import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import edu.rpi.legup.app.GameBoardFacade;
 import edu.rpi.legup.app.LegupPreferences;
 import edu.rpi.legup.ui.boardview.BoardView;
 import edu.rpi.legup.ui.proofeditorui.treeview.TreePanel;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.security.InvalidParameterException;
+import java.util.Objects;
 
 public class LegupUI extends JFrame implements WindowListener {
     private final static Logger LOGGER = LogManager.getLogger(LegupUI.class.getName());
@@ -27,14 +27,14 @@ public class LegupUI extends JFrame implements WindowListener {
 
     /**
      * Identifies operating system
+     *
      * @return operating system, either mac or win
      */
     public static String getOS() {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("mac")) {
             os = "mac";
-        }
-        else {
+        } else {
             os = "win";
         }
         return os;
@@ -51,12 +51,10 @@ public class LegupUI extends JFrame implements WindowListener {
         try {
             if (Boolean.valueOf(prefs.getUserPref(LegupPreferences.DARK_MODE))) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-            }
-            else {
+            } else {
                 UIManager.setLookAndFeel(new FlatLightLaf());
             }
-        }
-        catch (UnsupportedLookAndFeelException e) {
+        } catch (UnsupportedLookAndFeelException e) {
             System.err.println("Not supported ui look and feel");
         }
 
@@ -158,12 +156,10 @@ public class LegupUI extends JFrame implements WindowListener {
         if (GameBoardFacade.getInstance().getHistory().getIndex() > -1) {
             if (noquit("Exiting LEGUP?")) {
                 this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            }
-            else {
+            } else {
                 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
             }
-        }
-        else {
+        } else {
             this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         }
     }

@@ -2,18 +2,13 @@ package edu.rpi.legup.user;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UsageStatistics {
 
@@ -45,13 +40,11 @@ public class UsageStatistics {
 
                 try {
 //                    System.err.println(new String(instream.readAllBytes()));
-                }
-                finally {
+                } finally {
                     instream.close();
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             return false;
         }
         return false;

@@ -1,6 +1,5 @@
 package edu.rpi.legup.utility;
 
-import edu.rpi.legup.Legup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.appender.ConsoleAppender;

@@ -4,11 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TreeToolbarPanel extends JPanel {
-    private TreePanel treePanel;
-    private TreeToolBarButton addChild, delChild, merge, collapse;
+    private final TreePanel treePanel;
+    private final TreeToolBarButton addChild;
+    private final TreeToolBarButton delChild;
+    private final TreeToolBarButton merge;
+    private final TreeToolBarButton collapse;
 
     /**
      * TreeToolbarPanel Constructor - creates the tree tool mBar panel
+     *
      * @param treePanel treePanel input
      */
     public TreeToolbarPanel(TreePanel treePanel) {

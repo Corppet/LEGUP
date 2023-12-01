@@ -1,10 +1,8 @@
 package edu.rpi.legup.controller;
 
 import java.awt.*;
-import java.awt.event.*;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public class BoardController extends Controller {
     protected Point lastLeftMousePoint;

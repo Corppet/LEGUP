@@ -9,7 +9,7 @@ import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersBoard;
 import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersCell;
 import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
 
-import java.awt.Point;
+import java.awt.*;
 
 public class NEdgeDirectRule extends DirectRule {
 
@@ -92,8 +92,7 @@ public class NEdgeDirectRule extends DirectRule {
         }
         if (lightUpBoard.getModifiedData().isEmpty()) {
             return null;
-        }
-        else {
+        } else {
             return lightUpBoard;
         }
     }

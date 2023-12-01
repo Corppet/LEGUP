@@ -17,7 +17,7 @@ public enum CommandError {
     SELECTION_CONTAINS_TRANSITION("The selection contains a tree transition."),
     DEFAULT_APPLICATION("[Apply Default Rule Application]");
 
-    private String value;
+    private final String value;
 
     CommandError(String value) {
         this.value = value;

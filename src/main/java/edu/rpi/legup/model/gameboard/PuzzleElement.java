@@ -53,7 +53,6 @@ public abstract class PuzzleElement<T> {
     }
 
     public void setType(Element e, MouseEvent m) {
-        return;
     }
 
     /**

@@ -1,9 +1,7 @@
 package edu.rpi.legup.ui.lookandfeel.components;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 
 public class MaterialTableCellEditor extends DefaultCellEditor {
 

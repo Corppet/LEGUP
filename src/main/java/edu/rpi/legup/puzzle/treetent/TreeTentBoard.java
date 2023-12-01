@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TreeTentBoard extends GridBoard {
 
-    private ArrayList<TreeTentLine> lines;
+    private final ArrayList<TreeTentLine> lines;
 
     private ArrayList<TreeTentClue> rowClues;
     private ArrayList<TreeTentClue> colClues;
@@ -75,8 +75,7 @@ public class TreeTentBoard extends GridBoard {
     public TreeTentClue getClue(int x, int y) {
         if (x == getWidth() && 0 <= y && y < getHeight()) {
             return rowClues.get(y);
-        }
-        else {
+        } else {
             if (y == getHeight() && 0 <= x && x < getWidth()) {
                 return colClues.get(x);
             }
@@ -189,8 +188,7 @@ public class TreeTentBoard extends GridBoard {
                     list.add(cell);
                 }
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < dimension.width; i++) {
                 TreeTentCell cell = getCell(index, i);
                 if (cell.getType() == type) {

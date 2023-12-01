@@ -3,24 +3,29 @@ package edu.rpi.legup.model;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
-import org.w3c.dom.Document;
 import edu.rpi.legup.save.ExportFileException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.util.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.ZoneId;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Element;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public abstract class PuzzleExporter {
     private static final Logger LOGGER = LogManager.getLogger(PuzzleExporter.class.getName());
@@ -84,11 +89,9 @@ public abstract class PuzzleExporter {
             StreamResult result = new StreamResult(new File(fileName));
 
             transformer.transform(source, result);
-        }
-        catch (ParserConfigurationException | TransformerException e) {
+        } catch (ParserConfigurationException | TransformerException e) {
             throw new ExportFileException("Puzzle Exporter: parser configuration exception");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw e;
             //throw new ExportFileException(e.getMessage());
         }

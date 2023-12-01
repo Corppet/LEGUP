@@ -8,9 +8,9 @@ import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersCell;
 import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
 
 import java.awt.*;
-import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class PreemptiveVisibilityContradictionRule extends ContradictionRule {
 
@@ -70,8 +70,7 @@ public class PreemptiveVisibilityContradictionRule extends ContradictionRule {
 
                 if (exists) {
                     rowQ.add(temp);
-                }
-                else {
+                } else {
                     //set flags
                     boolean dupeTemp = temp.getDupeFlag();
                     boolean viewTemp = temp.getViewFlag();
@@ -110,8 +109,7 @@ public class PreemptiveVisibilityContradictionRule extends ContradictionRule {
 
                 if (exists) {
                     colQ.add(temp);
-                }
-                else {
+                } else {
                     //set flags
                     boolean dupeTemp = temp.getDupeFlag();
                     boolean viewTemp = temp.getViewFlag();

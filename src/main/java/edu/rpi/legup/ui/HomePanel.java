@@ -3,37 +3,31 @@ package edu.rpi.legup.ui;
 import edu.rpi.legup.app.GameBoardFacade;
 import edu.rpi.legup.app.LegupPreferences;
 import edu.rpi.legup.controller.CursorController;
-import edu.rpi.legup.save.InvalidFileFormatException;
 import edu.rpi.legup.model.Puzzle;
-import edu.rpi.legup.model.PuzzleExporter;
-import edu.rpi.legup.save.ExportFileException;
-
-import javax.swing.*;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.Objects;
-
+import edu.rpi.legup.save.InvalidFileFormatException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
+import javax.xml.parsers.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.Objects;
 
 public class HomePanel extends LegupPanel {
     private final static Logger LOGGER = LogManager.getLogger(HomePanel.class.getName());
-    private LegupUI legupUI;
-    private JFrame frame;
+    private final LegupUI legupUI;
+    private final JFrame frame;
     private JButton[] buttons;
     private JLabel[] text;
     private JMenuBar menuBar;
@@ -41,7 +35,7 @@ public class HomePanel extends LegupPanel {
 
     private final int buttonSize = 100;
 
-    private ActionListener openProofListener = new ActionListener() {
+    private final ActionListener openProofListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object[] items = legupUI.getProofEditor().promptPuzzle();
@@ -55,7 +49,7 @@ public class HomePanel extends LegupPanel {
         }
     };
 
-    private ActionListener openPuzzleListener = new ActionListener() {
+    private final ActionListener openPuzzleListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object[] items = legupUI.getPuzzleEditor().promptPuzzle();
@@ -93,8 +87,7 @@ public class HomePanel extends LegupPanel {
         contribute.addActionListener(l -> {
             try {
                 java.awt.Desktop.getDesktop().browse(URI.create("https://github.com/Bram-Hub/Legup"));
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 LOGGER.error("Can't open web page");
             }
         });
@@ -161,7 +154,7 @@ public class HomePanel extends LegupPanel {
         this.buttons[2].setVerticalTextPosition(AbstractButton.BOTTOM);
         this.buttons[2].addActionListener(CursorController.createListener(this, openPuzzleListener)); // PLACEHOLDER
 
-        for (int i = 0; i < this.buttons.length-1; i++) { // -1 to avoid the batch grader button
+        for (int i = 0; i < this.buttons.length - 1; i++) { // -1 to avoid the batch grader button
             this.buttons[i].setBounds(200, 200, 700, 700);
         }
         this.buttons[3] = new JButton("Batch Grader");
@@ -174,8 +167,7 @@ public class HomePanel extends LegupPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     use_xml_to_check();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
                 System.out.println("finished checking the folder");
@@ -245,14 +237,12 @@ public class HomePanel extends LegupPanel {
                             if (puzzle.isPuzzleComplete()) {
                                 writer.append("Solved");
                                 System.out.println(fileEntry.getName() + "  solved");
-                            }
-                            else {
+                            } else {
                                 writer.append("Not Solved");
                                 System.out.println(fileEntry.getName() + "  not solved");
                             }
                             writer.append("\n");
-                        }
-                        catch (InvalidFileFormatException e) {
+                        } catch (InvalidFileFormatException e) {
                             LOGGER.error(e.getMessage());
                         }
                     }
@@ -262,8 +252,7 @@ public class HomePanel extends LegupPanel {
                     writer.append("\n");
                 }
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             LOGGER.error(ex.getMessage());
             this.buttons[3].addActionListener((ActionEvent e) -> use_xml_to_check());
         }
@@ -293,16 +282,14 @@ public class HomePanel extends LegupPanel {
                 // use this helper function to write to the .csv file
                 recursive_parser(folderEntry, writer, path, path);
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             LOGGER.error(ex.getMessage());
         }
         if (resultFile.exists()) {
             try {
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(resultFile);
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 LOGGER.error(ex.getMessage());
             }
         }
@@ -321,8 +308,7 @@ public class HomePanel extends LegupPanel {
             DocumentBuilder builder = factory.newDocumentBuilder();
             builder.parse(file);
             flag = true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             flag = false;
         }
         return flag;
@@ -331,8 +317,8 @@ public class HomePanel extends LegupPanel {
     /**
      * @param folder - the input folder
      * @param writer - write to .csv
-     * @param path - the current path
-     * @param name - student's name (the first subfolders of the main folder)
+     * @param path   - the current path
+     * @param name   - student's name (the first subfolders of the main folder)
      * @throws IOException
      */
     private void recursive_parser(File folder, BufferedWriter writer, String path, String name) throws IOException {
@@ -372,8 +358,10 @@ public class HomePanel extends LegupPanel {
                         @Override
                         public void startDocument() throws SAXException {
                         }
+
                         boolean solvedFlagExists = false;
                         boolean puzzleTypeExists = false;
+
                         @Override
                         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                             // append file type to the writer
@@ -382,8 +370,7 @@ public class HomePanel extends LegupPanel {
                                     writer.write(attributes.getValue(0));
                                     writer.write(",");
                                     puzzleTypeExists = true;
-                                }
-                                catch (IOException e) {
+                                } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
                             }
@@ -395,24 +382,19 @@ public class HomePanel extends LegupPanel {
                                     if (isSolved.equals("true")) {
                                         try {
                                             writer.write("Solved");
-                                        }
-                                        catch (IOException e) {
+                                        } catch (IOException e) {
                                             throw new RuntimeException(e);
                                         }
-                                    }
-                                    else if (isSolved.equals("false")) {
+                                    } else if (isSolved.equals("false")) {
                                         try {
                                             writer.write("Not Solved");
-                                        }
-                                        catch (IOException e) {
+                                        } catch (IOException e) {
                                             throw new RuntimeException(e);
                                         }
-                                    }
-                                    else {
-                                        try { 
+                                    } else {
+                                        try {
                                             writer.write("Error");
-                                        }
-                                        catch (IOException e) {
+                                        } catch (IOException e) {
                                             throw new RuntimeException(e);
                                         }
                                     }
@@ -422,35 +404,34 @@ public class HomePanel extends LegupPanel {
                                     try {
                                         writer.write(",");
                                         writer.write(lastSaved);
-                                    }
-                                    catch (IOException e) {
+                                    } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
                                 }
                                 solvedFlagExists = true;
                             }
                         }
+
                         @Override
                         public void characters(char[] ch, int start, int length) throws SAXException {
                         }
+
                         @Override
                         public void endElement(String uri, String localName, String qName) throws SAXException {
                         }
+
                         @Override
                         public void endDocument() throws SAXException {
                             if (!puzzleTypeExists) {
                                 try {
                                     writer.write("not a LEGUP puzzle!");
-                                }
-                                catch (IOException e) {
+                                } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
-                            }
-                            else if (!solvedFlagExists) {
+                            } else if (!solvedFlagExists) {
                                 try {
                                     writer.write("missing flag!");
-                                }
-                                catch (IOException e) {
+                                } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
                             }
@@ -463,8 +444,7 @@ public class HomePanel extends LegupPanel {
                 }
                 writer.write("\n");
             }
-        }
-        catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             LOGGER.error(e.getMessage());
         }
     }
@@ -558,8 +538,7 @@ public class HomePanel extends LegupPanel {
                 String path = folderEntry.getName();
                 traverseDir(folderEntry, writer, path);
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             LOGGER.error(ex.getMessage());
         }
         JOptionPane.showMessageDialog(null, "Batch grading complete.");
@@ -605,16 +584,13 @@ public class HomePanel extends LegupPanel {
                     writer.append(puzzle.getName()).append(",");
                     if (puzzle.isPuzzleComplete()) {
                         writer.append("Solved\n");
-                    }
-                    else {
+                    } else {
                         writer.append("Unsolved\n");
                     }
-                }
-                catch (InvalidFileFormatException e) {
+                } catch (InvalidFileFormatException e) {
                     writer.append(fName).append("InvalidFile,Ungradeable\n");
                 }
-            }
-            else {
+            } else {
                 LOGGER.debug("Failed to run sim");
             }
         }
@@ -641,8 +617,8 @@ public class HomePanel extends LegupPanel {
     /**
      * Opens the puzzle editor for the specified game with the given statements
      *
-     * @param game          a String containing the name of the game
-     * @param statements    an array of statements
+     * @param game       a String containing the name of the game
+     * @param statements an array of statements
      */
     public void openEditorWithNewPuzzle(String game, String[] statements) {
         // Validate the text input

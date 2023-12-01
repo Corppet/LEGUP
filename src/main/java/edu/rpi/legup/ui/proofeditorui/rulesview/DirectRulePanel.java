@@ -3,7 +3,7 @@ package edu.rpi.legup.ui.proofeditorui.rulesview;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class DirectRulePanel extends RulePanel {
     private static final Logger LOGGER = LogManager.getLogger(DirectRulePanel.class.getName());

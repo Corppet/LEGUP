@@ -1,7 +1,6 @@
 package edu.rpi.legup.ui.puzzleeditorui.elementsview;
 
 import edu.rpi.legup.model.elements.Element;
-import edu.rpi.legup.model.rules.Rule;
 
 import javax.swing.*;
 import javax.swing.border.Border;

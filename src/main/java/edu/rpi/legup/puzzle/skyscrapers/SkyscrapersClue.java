@@ -4,7 +4,7 @@ import edu.rpi.legup.model.gameboard.PuzzleElement;
 
 public class SkyscrapersClue extends PuzzleElement<Integer> {
     private SkyscrapersType type;
-    private int clueIndex;
+    private final int clueIndex;
 
     public SkyscrapersClue(int value, int clueIndex, SkyscrapersType type) {
         super(value);

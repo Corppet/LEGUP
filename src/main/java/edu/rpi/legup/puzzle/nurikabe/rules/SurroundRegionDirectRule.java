@@ -11,12 +11,9 @@ import edu.rpi.legup.puzzle.nurikabe.NurikabeType;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeUtilities;
 import edu.rpi.legup.utility.DisjointSets;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
 import java.awt.*;
+import java.util.List;
+import java.util.*;
 
 public class SurroundRegionDirectRule extends DirectRule {
 
@@ -51,15 +48,15 @@ public class SurroundRegionDirectRule extends DirectRule {
         NurikabeCell modCell = (NurikabeCell) modified.getPuzzleElement(puzzleElement);
         modCell.setData(NurikabeType.WHITE.toValue());
 
-        if(cell.getType() == NurikabeType.BLACK) {
+        if (cell.getType() == NurikabeType.BLACK) {
             DisjointSets<NurikabeCell> regions = NurikabeUtilities.getNurikabeRegions(destBoardState);
             Set<NurikabeCell> adj = new HashSet<>(); //set to hold adjacent cells
             Point loc = cell.getLocation(); //position of placed cell
             List<Point> directions = Arrays.asList(new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1));
-            for(Point direction : directions) {
+            for (Point direction : directions) {
                 NurikabeCell curr = destBoardState.getCell(loc.x + direction.x, loc.y + direction.y);
-                if(curr != null) {
-                    if(curr.getType() == NurikabeType.WHITE || curr.getType() == NurikabeType.NUMBER) {
+                if (curr != null) {
+                    if (curr.getType() == NurikabeType.WHITE || curr.getType() == NurikabeType.NUMBER) {
                         adj.add(curr); //adds cells to adj only if they are white or number blocks
                     }
                 }

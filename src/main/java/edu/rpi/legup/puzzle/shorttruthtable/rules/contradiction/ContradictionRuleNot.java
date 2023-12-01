@@ -1,7 +1,7 @@
 package edu.rpi.legup.puzzle.shorttruthtable.rules.contradiction;
 
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableOperation;
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCellType;
+import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableOperation;
 
 public class ContradictionRuleNot extends ContradictionRule_GenericStatement {
 

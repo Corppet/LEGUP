@@ -2,8 +2,8 @@ package edu.rpi.legup.puzzle.nurikabe.rules;
 
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.rules.ContradictionRule;
+import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeBoard;
@@ -61,27 +61,19 @@ public class BlackBetweenRegionsDirectRule extends DirectRule {
 
         if (upCell != null && (upCell.getType() == NurikabeType.WHITE || upCell.getType() == NurikabeType.NUMBER)) {
             NurikabeCell repCell = regions.find(upCell);
-            if (!adjacentWhiteRegions.contains(repCell)) {
-                adjacentWhiteRegions.add(repCell);
-            }
+            adjacentWhiteRegions.add(repCell);
         }
         if (rightCell != null && (rightCell.getType() == NurikabeType.WHITE || rightCell.getType() == NurikabeType.NUMBER)) {
             NurikabeCell repCell = regions.find(rightCell);
-            if (!adjacentWhiteRegions.contains(repCell)) {
-                adjacentWhiteRegions.add(repCell);
-            }
+            adjacentWhiteRegions.add(repCell);
         }
         if (downCell != null && (downCell.getType() == NurikabeType.WHITE || downCell.getType() == NurikabeType.NUMBER)) {
             NurikabeCell repCell = regions.find(downCell);
-            if (!adjacentWhiteRegions.contains(repCell)) {
-                adjacentWhiteRegions.add(repCell);
-            }
+            adjacentWhiteRegions.add(repCell);
         }
         if (leftCell != null && (leftCell.getType() == NurikabeType.WHITE || leftCell.getType() == NurikabeType.NUMBER)) {
             NurikabeCell repCell = regions.find(leftCell);
-            if (!adjacentWhiteRegions.contains(repCell)) {
-                adjacentWhiteRegions.add(repCell);
-            }
+            adjacentWhiteRegions.add(repCell);
         }
 
         if (adjacentWhiteRegions.size() < 2) {

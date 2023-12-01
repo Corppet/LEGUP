@@ -3,7 +3,9 @@ package edu.rpi.legup.puzzle.skyscrapers;
 import edu.rpi.legup.history.CommandError;
 import edu.rpi.legup.history.PuzzleCommand;
 import edu.rpi.legup.model.gameboard.Board;
-import edu.rpi.legup.model.tree.*;
+import edu.rpi.legup.model.tree.TreeElementType;
+import edu.rpi.legup.model.tree.TreeNode;
+import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
 import edu.rpi.legup.ui.proofeditorui.treeview.TreeNodeView;
 import edu.rpi.legup.ui.proofeditorui.treeview.TreeTransitionView;
@@ -15,10 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ClueCommand extends PuzzleCommand {
-    private TreeViewSelection selection;
-    private SkyscrapersClueView clueView;
-    private Map<TreeNode, TreeTransition> addTran;
-    private List<List<SkyscrapersCell>> emptyCells;
+    private final TreeViewSelection selection;
+    private final SkyscrapersClueView clueView;
+    private final Map<TreeNode, TreeTransition> addTran;
+    private final List<List<SkyscrapersCell>> emptyCells;
 
     public ClueCommand(TreeViewSelection selection, SkyscrapersClueView clueView) {
         this.selection = selection;
@@ -101,19 +103,16 @@ public class ClueCommand extends PuzzleCommand {
             TreeNodeView nodeView = (TreeNodeView) selectedView;
             if (!nodeView.getChildrenViews().isEmpty()) {
                 return CommandError.UNMODIFIABLE_BOARD.toString();
-            }
-            else {
+            } else {
                 if (!board.getPuzzleElement(selectedPuzzleElement).isModifiable()) {
                     return CommandError.UNMODIFIABLE_DATA.toString();
                 }
             }
-        }
-        else {
+        } else {
             TreeTransitionView transitionView = (TreeTransitionView) selectedView;
             if (!transitionView.getTreeElement().getBoard().isModifiable()) {
                 return CommandError.UNMODIFIABLE_BOARD.toString();
-            }
-            else {
+            } else {
                 if (!board.getPuzzleElement(selectedPuzzleElement).isModifiable()) {
                     return CommandError.UNMODIFIABLE_DATA.toString();
                 }

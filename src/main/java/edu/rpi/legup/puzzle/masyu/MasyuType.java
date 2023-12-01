@@ -1,7 +1,5 @@
 package edu.rpi.legup.puzzle.masyu;
 
-import edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType;
-
 public enum MasyuType {
     UNKNOWN, BLACK, WHITE, LINE;
 

@@ -1,8 +1,5 @@
 package edu.rpi.legup.history;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public abstract class PuzzleCommand implements ICommand {
     private CommandState state;
     private boolean isCached;
@@ -48,8 +45,7 @@ public abstract class PuzzleCommand implements ICommand {
     public final String getError() {
         if (isCached) {
             return cachedError;
-        }
-        else {
+        } else {
             return getErrorString();
         }
     }
@@ -79,8 +75,7 @@ public abstract class PuzzleCommand implements ICommand {
         if (state == CommandState.UNDOED) {
             executeCommand();
             state = CommandState.REDOED;
-        }
-        else {
+        } else {
             throw new InvalidCommandStateTransition(this, state, CommandState.REDOED);
         }
     }
@@ -93,8 +88,7 @@ public abstract class PuzzleCommand implements ICommand {
         if (state == CommandState.EXECUTED || state == CommandState.REDOED) {
             undoCommand();
             state = CommandState.UNDOED;
-        }
-        else {
+        } else {
             throw new InvalidCommandStateTransition(this, state, CommandState.UNDOED);
         }
     }
@@ -106,8 +100,7 @@ public abstract class PuzzleCommand implements ICommand {
         if (state == CommandState.UNDOED) {
             redoCommand();
             state = CommandState.REDOED;
-        }
-        else {
+        } else {
             throw new InvalidCommandStateTransition(this, state, CommandState.REDOED);
         }
     }

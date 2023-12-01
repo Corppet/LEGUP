@@ -20,12 +20,12 @@ import static edu.rpi.legup.app.GameBoardFacade.getInstance;
 public class EditLineCommand extends PuzzleCommand {
     private TreeTransition transition;
     private PuzzleElement oldData;
-    private PuzzleElement newData;
+    private final PuzzleElement newData;
 
-    private ElementView elementView;
-    private TreeElementView selectedView;
+    private final ElementView elementView;
+    private final TreeElementView selectedView;
     private TreeElementView newSelectedView;
-    private MouseEvent event;
+    private final MouseEvent event;
 
     private TreeTransitionView transitionView;
 
@@ -71,8 +71,7 @@ public class EditLineCommand extends PuzzleCommand {
             board = (MasyuBoard) transition.getBoard();
             getInstance().getPuzzleModule().setCurrentBoard(board);
             oldData = newData.copy();
-        }
-        else {
+        } else {
             transitionView = (TreeTransitionView) selectedView;
             transition = transitionView.getTreeElement();
         }
@@ -101,8 +100,7 @@ public class EditLineCommand extends PuzzleCommand {
             board.getModifiedData().remove(dup_line);
             board.getLines().remove(dup_line);
 //            puzzle.notifyBoardListeners((IBoardListener listener) -> listener.onTreeElementChanged(editBoard));
-        }
-        else {
+        } else {
             System.out.println("adding");
             board.getModifiedData().add(newData);
             board.getLines().add((MasyuLine) newData);
@@ -123,8 +121,7 @@ public class EditLineCommand extends PuzzleCommand {
         Board board = selectedView.getTreeElement().getBoard();
         if (!board.isModifiable()) {
             return "Board is not modifiable";
-        }
-        else {
+        } else {
             if (!board.getPuzzleElement(elementView.getPuzzleElement()).isModifiable()) {
                 return "Data is not modifiable";
             }
@@ -165,8 +162,7 @@ public class EditLineCommand extends PuzzleCommand {
 
         if (prevBoard.getPuzzleElement(elementView.getPuzzleElement()).equalsData(newData)) {
             board.removeModifiedData(newData);
-        }
-        else {
+        } else {
             board.addModifiedData(newData);
         }
         transition.propagateChange(newData);

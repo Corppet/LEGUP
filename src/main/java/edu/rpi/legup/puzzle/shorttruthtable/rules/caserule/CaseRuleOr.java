@@ -1,7 +1,7 @@
 package edu.rpi.legup.puzzle.shorttruthtable.rules.caserule;
 
-import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableOperation;
 import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableCellType;
+import edu.rpi.legup.puzzle.shorttruthtable.ShortTruthTableOperation;
 
 public class CaseRuleOr extends CaseRule_GenericStatement {
 

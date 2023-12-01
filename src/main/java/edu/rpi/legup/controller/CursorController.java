@@ -1,8 +1,6 @@
 package edu.rpi.legup.controller;
 
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.event.ActionEvent;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,8 +39,7 @@ public class CursorController {
             try {
                 timer.schedule(timerTask, DELAY);
                 mainActionListener.actionPerformed(e);
-            }
-            finally {
+            } finally {
                 timer.cancel();
                 component.setCursor(DEFAULT_CURSOR);
             }

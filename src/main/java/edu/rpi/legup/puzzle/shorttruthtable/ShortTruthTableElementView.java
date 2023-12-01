@@ -1,7 +1,7 @@
 package edu.rpi.legup.puzzle.shorttruthtable;
 
-import edu.rpi.legup.ui.boardview.GridElementView;
 import edu.rpi.legup.app.LegupPreferences;
+import edu.rpi.legup.ui.boardview.GridElementView;
 
 import java.awt.*;
 

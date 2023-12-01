@@ -7,12 +7,11 @@ import edu.rpi.legup.model.rules.CaseRule;
 import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.puzzle.treetent.TreeTentBoard;
 import edu.rpi.legup.puzzle.treetent.TreeTentCell;
-import edu.rpi.legup.puzzle.treetent.TreeTentType;
 import edu.rpi.legup.puzzle.treetent.TreeTentClue;
+import edu.rpi.legup.puzzle.treetent.TreeTentType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.*;
 
 public class FillinRowCaseRule extends CaseRule {
 
@@ -64,8 +63,7 @@ public class FillinRowCaseRule extends CaseRule {
             group = tBoard.getRowCol(clueIndex, TreeTentType.UNKNOWN, false);
             tentsLeft = tBoard.getRowClues().get(clueIndex).getData() - tBoard.getRowCol(clueIndex, TreeTentType.TENT, false).size();
             cases = genCombinations(tBoard, group, tentsLeft, clueIndex, false);
-        }
-        else {
+        } else {
             group = tBoard.getRowCol(clueIndex, TreeTentType.UNKNOWN, true);
             tentsLeft = tBoard.getRowClues().get(clueIndex).getData() - tBoard.getRowCol(clueIndex, TreeTentType.TENT, true).size();
             cases = genCombinations(tBoard, group, tentsLeft, clueIndex, true);
@@ -93,8 +91,7 @@ public class FillinRowCaseRule extends CaseRule {
                     PuzzleElement change = temp.getPuzzleElement(c);
                     change.setData(TreeTentType.TENT);
                     temp.addModifiedData(change);
-                }
-                else {
+                } else {
                     PuzzleElement change = temp.getPuzzleElement(c);
                     change.setData(TreeTentType.GRASS);
                     temp.addModifiedData(change);
@@ -121,8 +118,7 @@ public class FillinRowCaseRule extends CaseRule {
         List<TreeTentCell> tents;
         if (isRow) {
             tents = board.getRowCol(index, TreeTentType.TENT, true);
-        }
-        else {
+        } else {
             tents = board.getRowCol(index, TreeTentType.TENT, false);
         }
 

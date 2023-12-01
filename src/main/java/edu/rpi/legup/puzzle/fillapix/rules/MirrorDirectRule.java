@@ -1,9 +1,5 @@
 package edu.rpi.legup.puzzle.fillapix.rules;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.rules.CaseRule;
@@ -14,6 +10,10 @@ import edu.rpi.legup.puzzle.fillapix.FillapixBoard;
 import edu.rpi.legup.puzzle.fillapix.FillapixCell;
 import edu.rpi.legup.puzzle.fillapix.FillapixCellType;
 import edu.rpi.legup.puzzle.fillapix.FillapixUtilities;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class MirrorDirectRule extends DirectRule {
     public MirrorDirectRule() {
@@ -43,7 +43,7 @@ public class MirrorDirectRule extends DirectRule {
         // find all cells adjacent to cell that are numbered
         ArrayList<FillapixCell> adjCells = FillapixUtilities.getAdjacentCells(parentBoard, parentCell);
         ArrayList<FillapixCell> adjNums = new ArrayList<FillapixCell>();
-        for (int i=0; i < adjCells.size(); i++) {
+        for (int i = 0; i < adjCells.size(); i++) {
             if ((adjCells.get(i)).getNumber() >= 0 && adjCells.get(i).getNumber() < 10) {
                 adjNums.add(adjCells.get(i));
             }
@@ -67,8 +67,7 @@ public class MirrorDirectRule extends DirectRule {
         // change the color of the  parentCell, and check if there exists a valid board
         if (cell.getType() == FillapixCellType.BLACK) {
             parentCell.setCellType(FillapixCellType.WHITE);
-        }
-        else {
+        } else {
             parentCell.setCellType(FillapixCellType.BLACK);
         }
         parentBoard.addModifiedData(parentCell);
@@ -98,6 +97,6 @@ public class MirrorDirectRule extends DirectRule {
      */
     @Override
     public Board getDefaultBoard(TreeNode node) {
-       return null;
+        return null;
     }
 }

@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ValidateContradictionRuleCommand extends PuzzleCommand {
-    private TreeViewSelection selection;
+    private final TreeViewSelection selection;
 
-    private Map<TreeNode, ArrayList<TreeTransition>> saveElements;
-    private ContradictionRule newRule;
-    private Map<TreeElement, TreeTransition> addTran;
+    private final Map<TreeNode, ArrayList<TreeTransition>> saveElements;
+    private final ContradictionRule newRule;
+    private final Map<TreeElement, TreeTransition> addTran;
 
     /**
      * ValidateContradictionRuleCommand Constructor creates a puzzle command for verifying a contradiction rule
@@ -48,8 +48,7 @@ public class ValidateContradictionRuleCommand extends PuzzleCommand {
             if (treeElement.getType() == TreeElementType.TRANSITION) {
                 TreeTransition transition = (TreeTransition) treeElement;
                 treeNode = transition.getParents().get(0);
-            }
-            else {
+            } else {
                 treeNode = (TreeNode) treeElement;
             }
 
@@ -68,8 +67,7 @@ public class ValidateContradictionRuleCommand extends PuzzleCommand {
                 transition.setRule(newRule);
                 transition.getBoard().setModifiable(false);
                 tree.addTreeElement(transition);
-            }
-            else {
+            } else {
                 transition.getBoard().setModifiable(false);
                 tree.addTreeElement(treeNode, transition);
             }
@@ -85,13 +83,11 @@ public class ValidateContradictionRuleCommand extends PuzzleCommand {
         if (firstSelectedView.getType() == TreeElementType.NODE) {
             TreeNodeView nodeView = (TreeNodeView) firstSelectedView;
             finalTreeElement = nodeView.getChildrenViews().get(0).getTreeElement();
-        }
-        else {
+        } else {
             TreeTransitionView transitionView = (TreeTransitionView) firstSelectedView;
             if (transitionView.getChildView() != null) {
                 finalTreeElement = transitionView.getChildView().getTreeElement();
-            }
-            else {
+            } else {
                 finalTreeElement = null;
             }
         }
@@ -140,8 +136,7 @@ public class ValidateContradictionRuleCommand extends PuzzleCommand {
             if (element.getType() == TreeElementType.TRANSITION) {
                 TreeTransition transition = (TreeTransition) element;
                 node = transition.getParents().get(0);
-            }
-            else {
+            } else {
                 node = (TreeNode) element;
             }
             node.getChildren().forEach(n -> puzzle.notifyTreeListeners(listener -> listener.onTreeElementRemoved(n)));

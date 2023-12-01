@@ -80,8 +80,7 @@ public class SudokuImporter extends PuzzleImporter {
                     throw new InvalidFileFormatException("Sudoku Importer: invalid board dimensions");
                 }
                 sudokuBoard = new SudokuBoard(size);
-            }
-            else {
+            } else {
                 throw new InvalidFileFormatException("Sudoku Importer: invalid board dimensions");
             }
 
@@ -117,8 +116,7 @@ public class SudokuImporter extends PuzzleImporter {
 //            }
 
             puzzle.setCurrentBoard(sudokuBoard);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new InvalidFileFormatException("Sudoku Importer: unknown value where integer expected");
         }
     }

@@ -1,27 +1,15 @@
 package edu.rpi.legup.puzzle.treetent;
 
-import edu.rpi.legup.app.GameBoardFacade;
 import edu.rpi.legup.controller.ElementController;
-import edu.rpi.legup.history.AutoCaseRuleCommand;
-import edu.rpi.legup.history.EditDataCommand;
-import edu.rpi.legup.history.ICommand;
-import edu.rpi.legup.model.gameboard.Board;
-import edu.rpi.legup.model.gameboard.CaseBoard;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-import edu.rpi.legup.ui.boardview.BoardView;
 import edu.rpi.legup.ui.boardview.ElementView;
-import edu.rpi.legup.ui.proofeditorui.treeview.TreePanel;
-import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
-import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
 import java.awt.event.MouseEvent;
 
-import static edu.rpi.legup.app.GameBoardFacade.getInstance;
-
 public class TreeTentController extends ElementController {
 
-    private ElementView lastCellPressed;
-    private ElementView dragStart;
+    private final ElementView lastCellPressed;
+    private final ElementView dragStart;
 
     public TreeTentController() {
         super();
@@ -113,26 +101,21 @@ public class TreeTentController extends ElementController {
         if (e.getButton() == MouseEvent.BUTTON1) {
             if (cell.getData() == TreeTentType.UNKNOWN) {
                 element.setData(TreeTentType.GRASS);
-            }
-            else {
+            } else {
                 if (cell.getData() == TreeTentType.GRASS) {
                     element.setData(TreeTentType.TENT);
-                }
-                else {
+                } else {
                     element.setData(TreeTentType.UNKNOWN);
                 }
             }
-        }
-        else {
+        } else {
             if (e.getButton() == MouseEvent.BUTTON3) {
                 if (cell.getData() == TreeTentType.UNKNOWN) {
                     element.setData(TreeTentType.TENT);
-                }
-                else {
+                } else {
                     if (cell.getData() == TreeTentType.GRASS) {
                         element.setData(TreeTentType.UNKNOWN);
-                    }
-                    else {
+                    } else {
                         element.setData(TreeTentType.GRASS);
                     }
                 }

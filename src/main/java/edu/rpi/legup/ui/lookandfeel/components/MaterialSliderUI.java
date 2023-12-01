@@ -3,13 +3,10 @@ package edu.rpi.legup.ui.lookandfeel.components;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialColors;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JSlider;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 
 //TODO cambio grafica slider
 public class MaterialSliderUI extends BasicSliderUI {
@@ -86,19 +83,16 @@ public class MaterialSliderUI extends BasicSliderUI {
 
             if (loaded) {
                 return slider.getInverted() ? right : left;
-            }
-            else {
+            } else {
                 return slider.getInverted() ? left : right;
             }
-        }
-        else {
+        } else {
             Line top = new Line(thumbRect.x + thumbRect.width / 2, trackRect.y, thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2);
             Line bottom = new Line(thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2, thumbRect.x + thumbRect.width / 2, trackRect.y + trackRect.height);
 
             if (loaded) {
                 return slider.getInverted() ? top : bottom;
-            }
-            else {
+            } else {
                 return slider.getInverted() ? bottom : top;
             }
         }

@@ -45,8 +45,8 @@ public class TooManyBlackCellsContradictionRule extends ContradictionRule {
         }
         if (numBlack > cellNum) {
             return null;
-        } 
-        
+        }
+
         return super.getNoContradictionMessage();
     }
 }

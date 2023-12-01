@@ -2,12 +2,10 @@ package edu.rpi.legup.ui.lookandfeel.components;
 
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JMenuBar;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuBarUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialMenuBarUI extends BasicMenuBarUI {
 

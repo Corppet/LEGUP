@@ -7,10 +7,8 @@ import edu.rpi.legup.puzzle.nurikabe.NurikabeBoard;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeCell;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeType;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeUtilities;
-import edu.rpi.legup.utility.DisjointSets;
 
 import java.util.Set;
-import java.util.List;
 
 public class NoNumberContradictionRule extends ContradictionRule {
 

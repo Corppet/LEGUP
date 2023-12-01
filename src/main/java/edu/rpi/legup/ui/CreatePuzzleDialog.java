@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class CreatePuzzleDialog extends JDialog {
-    private HomePanel homePanel;
+    private final HomePanel homePanel;
 
     private String[] games;
     private JComboBox gameBox;
-    private ActionListener gameBoxListener = new ActionListener() {
+    private final ActionListener gameBoxListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             JComboBox comboBox = (JComboBox) e.getSource();
@@ -27,8 +27,7 @@ public class CreatePuzzleDialog extends JDialog {
                 rows.setVisible(false);
                 columnsLabel.setVisible(false);
                 columns.setVisible(false);
-            }
-            else {
+            } else {
                 textInputScrollPane.setVisible(false);
                 rowsLabel.setVisible(true);
                 rows.setVisible(true);
@@ -38,17 +37,17 @@ public class CreatePuzzleDialog extends JDialog {
         }
     };
 
-    private JLabel puzzleLabel;
-    private JLabel rowsLabel;
-    private JTextField rows;
-    private JLabel columnsLabel;
-    private JTextField columns;
+    private final JLabel puzzleLabel;
+    private final JLabel rowsLabel;
+    private final JTextField rows;
+    private final JLabel columnsLabel;
+    private final JTextField columns;
 
-    private JTextArea textArea;
-    private JScrollPane textInputScrollPane;
+    private final JTextArea textArea;
+    private final JScrollPane textInputScrollPane;
 
-    private JButton ok = new JButton("Ok");
-    private ActionListener okButtonListener = new ActionListener() {
+    private final JButton ok = new JButton("Ok");
+    private final ActionListener okButtonListener = new ActionListener() {
         /**
          * Attempts to open the puzzle editor interface for the given game with the given dimensions
          * @param ae the event to be processed
@@ -70,21 +69,19 @@ public class CreatePuzzleDialog extends JDialog {
             try {
                 if (game.equals("ShortTruthTable")) {
                     homePanel.openEditorWithNewPuzzle("ShortTruthTable", textArea.getText().split("\n"));
-                }
-                else {
+                } else {
                     homePanel.openEditorWithNewPuzzle(game, Integer.valueOf(rows.getText()), Integer.valueOf(columns.getText()));
                 }
                 setVisible(false);
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Failed to open editor with new puzzle");
                 e.printStackTrace(System.out);
             }
         }
     };
 
-    private JButton cancel = new JButton("Cancel");
-    private ActionListener cancelButtonListener = new ActionListener() {
+    private final JButton cancel = new JButton("Cancel");
+    private final ActionListener cancelButtonListener = new ActionListener() {
         /**
          * Dispose the puzzle creation dialog
          *
@@ -153,8 +150,7 @@ public class CreatePuzzleDialog extends JDialog {
             rows.setVisible(false);
             columnsLabel.setVisible(false);
             columns.setVisible(false);
-        }
-        else {
+        } else {
             textInputScrollPane.setVisible(false);
             rowsLabel.setVisible(true);
             rows.setVisible(true);
@@ -184,22 +180,18 @@ public class CreatePuzzleDialog extends JDialog {
             try {
                 if (game.equals("ShortTruthTable")) {
                     this.homePanel.openEditorWithNewPuzzle("ShortTruthTable", this.textArea.getText().split("\n"));
-                }
-                else {
+                } else {
                     this.homePanel.openEditorWithNewPuzzle(game, Integer.valueOf(this.rows.getText()), Integer.valueOf(this.columns.getText()));
 
                 }
                 this.setVisible(false);
-            }
-            catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException exception) {
                 // Don't do anything. This is here to prevent the dialog from closing if the dimensions are invalid.
             }
-        }
-        else {
+        } else {
             if (e.getSource() == cancel) {
                 this.setVisible(false);
-            }
-            else {
+            } else {
                 // Unknown Action Event
             }
         }

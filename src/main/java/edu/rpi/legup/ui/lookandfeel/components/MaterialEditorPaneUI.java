@@ -1,6 +1,6 @@
 package edu.rpi.legup.ui.lookandfeel.components;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicEditorPaneUI;
 

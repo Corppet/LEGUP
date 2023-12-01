@@ -2,11 +2,12 @@ package edu.rpi.legup.controller;
 
 import edu.rpi.legup.model.Puzzle;
 import edu.rpi.legup.model.tree.Tree;
-import edu.rpi.legup.model.tree.TreeElementType;
 import edu.rpi.legup.ui.boardview.BoardView;
-import edu.rpi.legup.ui.proofeditorui.treeview.*;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeElementView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreePanel;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeView;
+import edu.rpi.legup.ui.proofeditorui.treeview.TreeViewSelection;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -44,6 +45,7 @@ public class TreeController extends Controller {
     /**
      * Mouse Released event sets the cursor back to the default cursor and reset info for panning
      * Set board modifiability
+     *
      * @param e MouseEvent object
      */
     @Override
@@ -58,14 +60,12 @@ public class TreeController extends Controller {
         if (treeElementView != null) {
             if (e.isShiftDown()) {
                 selection.addToSelection(treeElementView);
-            }
-            else {
+            } else {
                 if (e.isControlDown()) {
                     if (!(selection.getSelectedViews().size() == 1 && treeElementView == selection.getFirstSelection())) {
                         selection.toggleSelection(treeElementView);
                     }
-                }
-                else {
+                } else {
                     selection.newSelection(treeElementView);
                 }
             }
@@ -140,8 +140,7 @@ public class TreeController extends Controller {
                 puzzle.notifyBoardListeners(listener -> listener.onTreeElementChanged(treeElementView.getTreeElement()));
                 selection.newHover(treeElementView);
                 puzzle.notifyTreeListeners(listener -> listener.onTreeSelectionChanged(selection));
-            }
-            else {
+            } else {
                 if (treeElementView == null && selection.getHover() != null) {
                     puzzle.notifyBoardListeners(listener -> listener.onTreeElementChanged(selection.getFirstSelection().getTreeElement()));
                     selection.clearHover();

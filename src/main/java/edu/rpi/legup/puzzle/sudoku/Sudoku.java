@@ -69,11 +69,7 @@ public class Sudoku extends Puzzle {
         // Note: we don't need to check the columns since by this point, we have verified that the number of rows
         // equals the number of columns
         double sqrtRows = Math.sqrt(rows);
-        if (sqrtRows - Math.floor(sqrtRows) != 0) {
-            return false;
-        }
-
-        return true;
+        return sqrtRows - Math.floor(sqrtRows) == 0;
     }
 
     /**

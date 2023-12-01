@@ -1,14 +1,14 @@
 package edu.rpi.legup.puzzle.shorttruthtable;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public enum ShortTruthTableCellType {
 
     FALSE(0), TRUE(1), UNKNOWN(-1), NOT_IN_PLAY(-2), PARENTHESIS(-3);
 
     public int value;
-    private static Map map = new HashMap<>();
+    private static final Map map = new HashMap<>();
 
     ShortTruthTableCellType(int value) {
         this.value = value;

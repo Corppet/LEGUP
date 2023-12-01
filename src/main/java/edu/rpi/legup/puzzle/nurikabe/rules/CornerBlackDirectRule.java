@@ -2,8 +2,8 @@ package edu.rpi.legup.puzzle.nurikabe.rules;
 
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
-import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.rules.ContradictionRule;
+import edu.rpi.legup.model.rules.DirectRule;
 import edu.rpi.legup.model.tree.TreeNode;
 import edu.rpi.legup.model.tree.TreeTransition;
 import edu.rpi.legup.puzzle.nurikabe.NurikabeBoard;
@@ -71,8 +71,7 @@ public class CornerBlackDirectRule extends DirectRule {
                                 if (pCell.getType() == NurikabeType.NUMBER) {
                                     if (regionNumber == 0) {
                                         regionNumber = pCell.getData();
-                                    }
-                                    else {
+                                    } else {
                                         return "There is a MultipleNumbers Contradiction on the board.";
                                     }
                                 }

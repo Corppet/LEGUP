@@ -2,13 +2,10 @@ package edu.rpi.legup.ui;
 
 import edu.rpi.legup.controller.Controller;
 
+import javax.swing.*;
 import java.awt.*;
-import java.lang.Double;
-
 import java.util.TreeSet;
 import java.util.logging.Logger;
-
-import javax.swing.*;
 
 public class ScrollView extends JScrollPane {
     private final static Logger LOGGER = Logger.getLogger(ScrollView.class.getName());
@@ -18,14 +15,14 @@ public class ScrollView extends JScrollPane {
     private static final double[] levels = {0.25, 1.0 / 3.0, 0.50, 2.0 / 3.0, 1.0, 2.0, 3.0, 4.0};
 
     private Dimension viewSize;
-    private Dimension zoomSize;
-    private TreeSet<Double> zoomLevels;
+    private final Dimension zoomSize;
+    private final TreeSet<Double> zoomLevels;
 
     private double scale;
 
-    private Controller controller;
-    private ZoomablePane canvas;
-    private ZoomWidget widget;
+    private final Controller controller;
+    private final ZoomablePane canvas;
+    private final ZoomWidget widget;
 
     /**
      * ScrollView Constructor - creates a ScrollView object using
@@ -153,8 +150,7 @@ public class ScrollView extends JScrollPane {
             updateSize();
             updatePosition(point, mag);
             // zoom out
-        }
-        else {
+        } else {
             mag = 1 / mag;
             // check zoom bounds
             if (scale * mag < minScale) {
@@ -192,8 +188,7 @@ public class ScrollView extends JScrollPane {
             updateSize();
             updatePosition(p, mag);
             // zoom out
-        }
-        else {
+        } else {
             updatePosition(p, mag);
             updateSize();
         }

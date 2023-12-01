@@ -7,7 +7,7 @@ import java.awt.*;
 import static edu.rpi.legup.puzzle.skyscrapers.SkyscrapersType.convertToSkyType;
 
 public class SkyscrapersCell extends GridCell<Integer> {
-    private int max;
+    private final int max;
 
     public SkyscrapersCell(Integer value, Point location, int size) {
         super(value, location);
@@ -15,7 +15,7 @@ public class SkyscrapersCell extends GridCell<Integer> {
     }
 
     public SkyscrapersType getType() {
-        switch (convertToSkyType(data)){
+        switch (convertToSkyType(data)) {
             case UNKNOWN:
                 return SkyscrapersType.UNKNOWN;
             default:

@@ -1,9 +1,5 @@
 package edu.rpi.legup.puzzle.fillapix.rules;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import edu.rpi.legup.model.gameboard.Board;
 import edu.rpi.legup.model.gameboard.PuzzleElement;
 import edu.rpi.legup.model.rules.CaseRule;
@@ -14,6 +10,10 @@ import edu.rpi.legup.puzzle.fillapix.FillapixBoard;
 import edu.rpi.legup.puzzle.fillapix.FillapixCell;
 import edu.rpi.legup.puzzle.fillapix.FillapixCellType;
 import edu.rpi.legup.puzzle.fillapix.FillapixUtilities;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class NonTouchingSharedDirectRule extends DirectRule {
     public NonTouchingSharedDirectRule() {
@@ -43,7 +43,7 @@ public class NonTouchingSharedDirectRule extends DirectRule {
         // get all adjCells that have a number
         ArrayList<FillapixCell> adjCells = FillapixUtilities.getAdjacentCells(parentBoard, parentCell);
         adjCells.removeIf(x -> x.getNumber() < 0 || x.getNumber() >= 10);
-        /* remove any number cell that does not have another number cell not 
+        /* remove any number cell that does not have another number cell not
          * touching, but sharing cells */
         Iterator<FillapixCell> itr = adjCells.iterator();
         while (itr.hasNext()) {
@@ -62,8 +62,7 @@ public class NonTouchingSharedDirectRule extends DirectRule {
         // change the cell to the opposite color
         if (cell.getType() == FillapixCellType.BLACK) {
             parentCell.setCellType(FillapixCellType.WHITE);
-        }
-        else {
+        } else {
             parentCell.setCellType(FillapixCellType.BLACK);
         }
         // check for some contradiction in all cases
@@ -94,6 +93,6 @@ public class NonTouchingSharedDirectRule extends DirectRule {
      */
     @Override
     public Board getDefaultBoard(TreeNode node) {
-       return null;
+        return null;
     }
 }

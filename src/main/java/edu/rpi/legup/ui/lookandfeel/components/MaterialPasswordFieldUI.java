@@ -3,23 +3,13 @@ package edu.rpi.legup.ui.lookandfeel.components;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialColors;
 import edu.rpi.legup.ui.lookandfeel.materialdesign.MaterialDrawingUtils;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JPasswordField;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPasswordFieldUI;
 import javax.swing.text.Element;
 import javax.swing.text.PasswordView;
 import javax.swing.text.View;
-import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -81,8 +71,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
                         getComponent().select(pos, pos + 1);
                         getComponent().replaceSelection("");
                     }
-                }
-                else {
+                } else {
                     getComponent().replaceSelection("");
                 }
             }
@@ -122,8 +111,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
         if (getComponent().hasFocus()) {
             c.setBackground(focusedBackground);
             c.setSelectionColor(focusedSelectionBackground);
-        }
-        else {
+        } else {
             c.setBackground(unfocusedBackground);
             c.setSelectionColor(unfocusedSelectionBackground);
         }

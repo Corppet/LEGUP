@@ -5,7 +5,7 @@ import edu.rpi.legup.model.gameboard.PuzzleElement;
 import javax.swing.*;
 
 public class SelectionItemView extends JMenuItem {
-    private PuzzleElement data;
+    private final PuzzleElement data;
 
     public SelectionItemView(PuzzleElement data, Icon icon) {
         super(icon);
